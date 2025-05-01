@@ -163,10 +163,22 @@ a {
     font-family: Archivo Black;
 }
 
+.calendar {
+    display: flex;
+    justify-content: right;
+    text-align: center;
+    font-family: Funnel Display;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    user-select: none;
+    -moz-user-select: none;
+}
+
 .weather {
     display: flex;
     flex-direction: row;
     height: max-content;
+    padding: 40px 0px;
 }
 
 .weather-info {
