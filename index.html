@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Title-->
+    <title>Numa</title>
+
+    <!--Styles-->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/loader.css">
+
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Funnel+Display:wght@300..800&family=Quintessential&display=swap" rel="stylesheet">    
+    
+    <!--Boxicon-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!--Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+</head>
+
+<body>
+    
+    <!--Loader + Script-->
+    <script src="js/loader.js"></script>
+    <div id="page-loader">
+        <div class="visual-cue-container">
+            <div class="ball" id="ball1"></div>
+            <div class="ball" id="ball2"></div>
+            <div class="ball" id="ball3"></div>
+            <div class="ball" id="ball4"></div>
+        </div>
+        <label class="loading-text">Loading</label>
+    </div>
+
+    <!--Settings-->
+    <div class="settings-button">
+        <i class='bx bxs-cog'></i>
+    </div>
+
+    <!--Greeting Division-->
+    <div class="greeting-container">
+        <div class="greeting">
+            Good Morning,
+        </div>
+        <div class="name">
+            John Doe
+        </div>
+    </div>
+    
+    <!--Links-->
+    <div class="link-container">
+        <div class="link-element" id="link1"><a href="#"><i class='bx bxl-youtube'></i></a><label class="link-name">YouTube</label></div>
+        <div class="link-element" id="link2"><a href="#"><i class='bx bxl-youtube'></i></a><label class="link-name">YouTube</label></div>
+        <div class="link-element" id="link3"><a href="#"><i class='bx bxl-youtube'></i></a><label class="link-name">YouTube</label></div>
+        <div class="link-element" id="link4"><a href="#"><i class='bx bxl-youtube'></i></a><label class="link-name">YouTube</label></div>
+    </div>
+
+    <!--Quote-->
+    <div class="quote-container">
+        <div class="quote">
+            Don't watch the clock; do what it does. Keep going.
+        </div>
+        <div class="author">
+            Sam Levenson
+        </div>
+    </div>
+
+    <!--Clock-->
+    <div class="clock-weather-container">
+        <label id="clock" class="clock"></label>
+
+        <div class="weather">
+            <div class="weather-info">
+                <div class="temperature">20°</div>
+                <div class="location">Seattle</div>
+            </div>
+            <div class="weather-icon">
+                <i class='bx bxs-cloud-rain'></i>
+            </div>
+        </div>
+    </div>
+
+    <!--Script-->
+    <script src="js/main.js"></script>
+    
+</body>
+
+</html>
