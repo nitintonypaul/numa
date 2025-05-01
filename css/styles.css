@@ -1,0 +1,189 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: black;
+    color: white;
+    overflow: hidden;
+    --accent-color: white;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/*Animations*/
+@keyframes pop-fade {
+    0% {opacity: 0;}
+    50% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+@keyframes settings-fade {
+    0% {opacity: 0;}
+    50% {opacity: 0;}
+    100% {opacity: 0.5;}
+}
+
+/*Settings Button*/
+.settings-button {
+    color: inherit;
+    position: absolute;
+    background: transparent;
+    border-radius: 50%;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 5px;
+    margin: 10px 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    opacity: 50%;
+
+    transition: opacity 0.5s, transform 1s;
+
+    animation: settings-fade 2.5s;
+}
+
+.settings-button:hover {
+    opacity: 100%;
+    transform: rotate(90deg);
+}
+/*Greeting Container*/
+.greeting-container {
+    padding: 10px 10px;
+    width: max-content;
+    display: flex;
+    user-select: none;
+    flex-direction: column;
+    margin: 50px 10px;
+
+    animation: pop-fade 1s;
+}
+
+.greeting {
+    font-size: 2rem;
+    font-family: Funnel Display;
+}
+
+.name {
+    font-size: 4rem;
+    font-family: Archivo Black;
+}
+
+/*Link Container*/
+.link-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 10px 10px;
+    margin: 10px 10px;
+    width: max-content;
+    user-select: none;
+
+    animation: pop-fade 1.5s;
+}
+
+.link-element {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 4rem;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    padding: 10px 10px;
+    overflow: hidden;
+    transition: border-color 0.5s, transform 0.2s;
+}
+
+.link-name {
+    font-size: 1rem;
+    font-family: Funnel Display;
+}
+
+.link-element:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-2%);
+}
+
+
+/*Quote Container*/
+.quote-container {
+    width: max-content;
+    border-radius: 10px;
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    gap: 10px;
+    left: 50%;
+    bottom: 5%;
+    transform: translateX(-50%);
+
+    animation: pop-fade 2s;
+}
+
+.quote {
+    justify-content: center;
+    text-align: center;
+    font-size: 1.2rem;
+    font-family: quintessential;
+}
+
+.author {
+    justify-content: center;
+    text-align: center;
+    font-family: Funnel Display;
+}
+
+/*Clock and Weather Container*/
+.clock-weather-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px;
+    width: max-content;
+    border-radius: 10px;
+    position: absolute;
+    right: 10px;
+    top: 50px;
+
+    animation: pop-fade 1s;
+}
+
+.clock {
+    font-size: 7rem;
+    user-select: none;
+    -moz-user-select: none;
+    font-family: Archivo Black;
+}
+
+.weather {
+    display: flex;
+    flex-direction: row;
+    height: max-content;
+}
+
+.weather-info {
+    display: flex;
+    flex-direction: column;
+    font-family: Funnel Display;
+    text-align: right;
+    width: 70%;
+    font-size: 1.5rem;
+    user-select: none;
+    -moz-user-select: none;
+}
+
+.weather-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    width: 30%;
+}
