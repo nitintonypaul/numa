@@ -1,3 +1,5 @@
+//Loading Page JS
+
 window.addEventListener('load', function () {
     const loader = document.getElementById('page-loader');
     if (loader) {
@@ -5,4 +7,4 @@ window.addEventListener('load', function () {
       loader.style.opacity = '0';
       setTimeout(() => loader.remove(), 500);
     }
-});  
+}); 
