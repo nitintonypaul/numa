@@ -48,6 +48,8 @@ function update() {
 setInterval(update, 1000)
 update()
 
+//Link System
+
 
 // Changing Theme
 //const root = document.documentElement;
