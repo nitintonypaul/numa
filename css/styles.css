@@ -249,7 +249,6 @@ a {
     border: 1px solid var(--color);
 }
 
-
 .name-display {
     font-family: Funnel Display;
     font-size: 1.4rem;
@@ -333,6 +332,8 @@ a {
 }
 
 .todo-container {
+    overflow-x: hidden;
+    text-wrap: wrap;
     user-select: none;
     position: absolute;
     padding: 10px 10px;
@@ -393,15 +394,6 @@ a {
     cursor: pointer;
 }
 
-.list-crossed {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    font-size: 1.2rem;
-    cursor: pointer;
-    position: relative;
-}
-
 .list:hover > input, .list:hover > label {
     opacity: 70%;
 }
@@ -425,4 +417,8 @@ a {
 .list > label {
     cursor: pointer;
    transition: opacity 0.2s; 
+   display: flex;
+   word-wrap: break-word;
+   width: 80%;
+   overflow: hidden;
 }
