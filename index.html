@@ -90,39 +90,40 @@
     </div>
 
     <!--To Do List-->
+    <!--To Do List Prompt-->
+    <div class="todo-prompt" id="todo-prompt">
+        <label class="name-display">Name</label>
+        <input type="text" name="todo-name" class="todo-input" id="todo-input">
+
+        <div class="save-cancel-container">
+            <button class="cancel" id="cancel">Cancel</button>
+            <button class="save" id="save">Save</button>
+        </div>
+    </div>
+
     <div class="todo-container">
 
         <div class="heading">
             <label class="todo-name">TO-DO</label>
-            <div class="add-todo">
+            <div class="add-todo" id="add-todo">
                 <button class="add-todo">
                     <i class='bx bx-plus'></i>
                 </button>
             </div>
         </div>
 
-        <div class="lists-container">
+        <div class="lists-container" id="lists-container">
 
             <div class="list" id="list1">
                 <input type="checkbox" id="todo1" name="todo1" value="todo1">
-                <label for="todo1">Read Book</label><br>
+                <label for="todo1">Eat Breakfast</label><br>
             </div>
-
-            <div class="list" id="list2">
-                <input type="checkbox" id="todo2" name="todo2" value="todo2">
-                <label for="todo2">Call Dentist</label><br>
-            </div>
-
-            <div class="list" id="list3">
-                <input type="checkbox" id="todo3" name="todo3" value="todo3">
-                <label for="todo3">Check Time</label><br>
-            </div>
-
         </div>
     </div>
 
     <!--Script-->
     <script src="js/main.js"></script>
+    <script src="js/todo.js"></script>
     
 </body>
 
