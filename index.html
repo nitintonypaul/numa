@@ -56,37 +56,62 @@
     
     <!--Links-->
     <div class="link-container">
-        <div class="link-element" id="link1"><a href="#"><i class='bx bxl-youtube'></i></a><label class="link-name">YouTube</label></div>
-        <div class="link-element" id="link2"><a href="#"><i class='bx bxl-youtube'></i></a><label class="link-name">YouTube</label></div>
-        <div class="link-element" id="link3"><a href="#"><i class='bx bxl-youtube'></i></a><label class="link-name">YouTube</label></div>
-        <div class="link-element" id="link4"><a href="#"><i class='bx bxl-youtube'></i></a><label class="link-name">YouTube</label></div>
+
+        <a href="https://openai.com/">
+        <div class="link-element" id="link1">
+            <div class="link-image-div" id="link-image-div-1"><img class="url-image" src="https://icons.duckduckgo.com/ip3/openai.com.ico"></div>
+            <label class="link-name">OpenAI</label>
+            <button class="add-link-button" id="link-button-1">
+                <i class='bx bx-pencil'></i>
+            </button>
+        </div>
+        </a>
+
+        <a href="https://www.instagram.com/">
+        <div class="link-element" id="link2">
+            <div class="link-image-div" id="link-image-div-2"><img class="url-image" src="https://icons.duckduckgo.com/ip3/instagram.com.ico"></div>
+            <label class="link-name">Instagram</label>
+            <button class="add-link-button" id="link-button-1">
+                <i class='bx bx-pencil'></i>
+            </button>
+        </div>
+        </a>
+
+        <a href="https://www.youtube.com/">
+        <div class="link-element" id="link3">
+            <div class="link-image-div" id="link-image-div-3"><img class="url-image" src="https://icons.duckduckgo.com/ip3/youtube.com.ico"></div>
+            <label class="link-name">YouTube</label>
+            <button class="add-link-button" id="link-button-1">
+                <i class='bx bx-pencil'></i>
+            </button>
+        </div>
+        </a>
+
+        <a href="https://linkedin.com/">
+        <div class="link-element" id="link4">
+            <div class="link-image-div" id="link-image-div-4"><img class="url-image" src="https://icons.duckduckgo.com/ip3/linkedin.com.ico"></div>
+            <label class="link-name">LinkedIn</label>
+            <button class="add-link-button" id="link-button-1">
+                <i class='bx bx-pencil'></i>
+            </button>
+        </div>
+        </a>
+
     </div>
 
     <!--Quote-->
     <div class="quote-container">
-        <div class="quote">
-            Don't watch the clock; do what it does. Keep going.
+        <div class="quote" id="quote">
+            Loading quote...
         </div>
-        <div class="author">
-            Sam Levenson
+        <div class="author" id="author">
         </div>
     </div>
 
-    <!--Clock, Calendar & Weather-->
-    <div class="clock-weather-container">
+    <!--Clock & Calendar-->
+    <div class="clock-calendar-container">
         <label id="clock" class="clock"></label>
-
-        <label id="calendar" class="calendar">Thursday, May 1</label>
-
-        <div class="weather">
-            <div class="weather-info">
-                <div class="temperature">20°</div>
-                <div class="location">Seattle</div>
-            </div>
-            <div class="weather-icon">
-                <i class='bx bxs-cloud-rain'></i>
-            </div>
-        </div>
+        <label id="calendar" class="calendar"></label>
     </div>
 
     <!--To Do List-->
@@ -125,6 +150,7 @@
     <!--Script-->
     <script src="js/main.js"></script>
     <script src="js/todo.js"></script>
+    <script src="data/zenquotes.js"></script>
     
 </body>
 
