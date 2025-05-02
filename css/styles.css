@@ -135,7 +135,7 @@ a {
     font-family: Funnel Display;
 }
 
-.link-element > a:hover{
+.link-element > a:hover {
     border-color: var(--accent-color);
 }
 
@@ -228,6 +228,110 @@ a {
 }
 
 /*TO DO LIST*/
+/*TO DO LIST PROMPT*/
+.todo-prompt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    padding: 10px 10px;
+    transform: translate(-50%,-50%);
+    background-color: var(--bg-color);
+    height: 150px;
+    width: 400px;
+    z-index: 2;
+    display: none;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    border: 1px solid var(--color);
+}
+
+
+.name-display {
+    font-family: Funnel Display;
+    font-size: 1.4rem;
+    user-select: none;
+}
+
+.todo-input {
+    font-size: 1.5rem;
+    padding: 5px 5px;
+    background-color: transparent;
+    border: 0px solid transparent;
+    border-bottom: 2px solid var(--color);
+    outline: none;
+    color: var(--color);
+    font-family: Funnel Display;
+    text-decoration: none;
+    caret-color: var(--color);
+    opacity: 50%;
+    transition: opacity 0.2s;
+}
+
+.todo-input:focus {
+    opacity: 100%;
+}
+
+.save-cancel-container {
+    display: flex;
+    padding: 10px 0px;
+}
+
+.cancel {
+    border: 2px solid var(--color);
+    background-color: transparent;
+    color: var(--color);
+    font-family: Funnel Display;
+    border-radius: 5px;
+    padding: 2px 10px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.cancel::before {
+    content: '';
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 0%;
+    background-color: var(--color);
+    transition: height 0.2s;
+    z-index: -1;
+}
+
+.cancel:hover::before {
+    height: 100%;
+}
+
+.cancel:hover {
+    color: var(--bg-color);
+}
+
+.save {
+    position: relative;
+    margin-left: auto;
+    border: 1px solid var(--color);
+    background-color: var(--color);
+    color: var(--bg-color);
+    font-family: Funnel Display;
+    border-radius: 5px;
+    padding: 2px 10px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.save:hover {
+    opacity: 70%;
+}
+
 .todo-container {
     user-select: none;
     position: absolute;
@@ -287,6 +391,15 @@ a {
     align-items: center;
     font-size: 1.2rem;
     cursor: pointer;
+}
+
+.list-crossed {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    position: relative;
 }
 
 .list:hover > input, .list:hover > label {
