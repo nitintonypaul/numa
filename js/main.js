@@ -1,6 +1,6 @@
 //Welcome message - Console
 console.log("Welcome to Numa.")
-
+  
 //Clock function
 function update() {
     let now = new Date()
