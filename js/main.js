@@ -48,9 +48,74 @@ function update() {
 setInterval(update, 1000)
 update()
 
-//Link System
-
 
 // Changing Theme
 //const root = document.documentElement;
 //root.style.setProperty('--bg-color', '#ff007f');
+
+
+//LINK SYSTEM
+//Yes I had to do all this since for some DAMN reason querySelector decided not to work
+const linkBtn1 = document.getElementById('1')
+const linkBtn2 = document.getElementById('2')
+const linkBtn3 = document.getElementById('3')
+const linkBtn4 = document.getElementById('4')
+
+function addLink(e) {
+
+    //Preventing Bubbling
+    e.stopPropagation()
+    e.preventDefault()
+
+    const ID = e.currentTarget.id
+    const linkPrompt = document.getElementById('link-prompt')
+    const url = document.getElementById('url-input')
+    const title = document.getElementById('title-input')
+    linkPrompt.style.display = 'flex'
+
+    //Cancelling Process
+    const linkCancel = document.getElementById('link-cancel')
+    linkCancel.addEventListener('click', () => {
+
+        url.value = ""
+        title.value = ""
+        linkPrompt.style.display = 'none'
+    })
+
+    //Saving Process
+    const linkSave = document.getElementById('link-save')
+    linkSave.addEventListener('click', () => {
+        const URLV = url.value
+        const TITLE = title.value
+
+        //If no URL is given
+        if (URLV.trim() == "") {
+            url.value = ""
+            title.value = ""
+            linkPrompt.style.display = 'none'
+            return true
+        }
+
+        //Else case, and obviously cuz I was lazy
+        //Getting URL
+        const domain = new URL(URLV).hostname
+
+        //Changing image, title and href
+        document.getElementById(`link-image-div-${ID}`).innerHTML = `<img class="url-image" src="https://icons.duckduckgo.com/ip3/${domain}.ico">`
+        document.getElementById(`link-name-${ID}`).innerHTML = TITLE
+        document.getElementById(`link-${ID}`).href = URLV
+
+        //Wrapping Up
+        url.value = ""
+        title.value = ""
+        linkPrompt.style.display = 'none'
+    })
+
+
+}
+
+//   :(
+linkBtn1.addEventListener('click', addLink)
+linkBtn2.addEventListener('click', addLink)
+linkBtn3.addEventListener('click', addLink)
+linkBtn4.addEventListener('click', addLink)
