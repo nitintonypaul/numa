@@ -4,10 +4,27 @@
 }
 
 body {
-    background: black;
-    color: white;
+    background: var(--bg-color);
+    color: var(--color);
     overflow: hidden;
-    --accent-color: white;
+    background: radial-gradient(circle at center, var(--bg-gradient) 0%, var(--bg-color) 80%);
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--bg-gradient);
+    opacity: 10%;
+    border-radius: 10px;
+}
+
+::selection {
+    color: var(--bg-color);
+    background: var(--color);
 }
 
 a {
@@ -98,8 +115,19 @@ a {
     border-radius: 10px;
     border: 2px solid transparent;
     padding: 10px 10px;
-    overflow: hidden;
-    transition: border-color 0.5s, transform 0.2s;
+    
+}
+
+.link-element > a {
+    border: 2px solid transparent;
+    border-radius: 10px;
+    height: 70px;
+    width: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: border-color 0.2s;
+    background-color: inherit;
 }
 
 .link-name {
@@ -107,9 +135,8 @@ a {
     font-family: Funnel Display;
 }
 
-.link-element:hover {
+.link-element > a:hover{
     border-color: var(--accent-color);
-    transform: translateY(-2%);
 }
 
 
@@ -198,4 +225,91 @@ a {
     align-items: center;
     font-size: 3rem;
     width: 30%;
+}
+
+/*TO DO LIST*/
+.todo-container {
+    user-select: none;
+    position: absolute;
+    padding: 10px 10px;
+    width: 200px;
+    height: 200px;
+    left: 20px;
+    border-radius: 10px;
+    overflow-y: scroll;
+
+    animation: pop-fade 1.5s;
+
+}
+
+.heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px 2px;
+}
+
+.todo-name {
+    width: 70%;
+    font-family: Funnel Display;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+.add-todo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.5s;
+    background-color: transparent;
+    color: inherit;
+    border: none;
+}
+
+.add-todo:hover {
+    transform: rotate(90deg);
+}
+
+.lists-container {
+    padding: 20px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: Funnel Display;
+    user-select: none;
+}
+
+.list {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.list:hover > input, .list:hover > label {
+    opacity: 70%;
+}
+
+.list > input {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border: 2px solid var(--color);
+    border-radius: 50%;
+    background-color: transparent;
+    transition: background-color 0.3s ease, opacity 0.2s;
+}
+
+.list > input:checked {
+    background-color: var(--color);
+}
+
+.list > label {
+    cursor: pointer;
+   transition: opacity 0.2s; 
 }
