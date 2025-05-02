@@ -2,7 +2,7 @@
 console.log("Welcome to Numa.")
 
 //Clock function
-function updateTime() {
+function update() {
     let now = new Date()
 
     var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -45,6 +45,10 @@ function updateTime() {
     calendar.innerHTML = `${day}, ${month} ${date}`
 }
 
-setInterval(updateTime, 1000)
-updateTime()
+setInterval(update, 1000)
+update()
 
+
+// Changing Theme
+//const root = document.documentElement;
+//root.style.setProperty('--bg-color', '#ff007f');
