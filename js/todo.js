@@ -1,63 +1,33 @@
 //TODO LIST JS
 //Variables
 const addButton = document.getElementById('add-todo')
-const list = document.getElementById('lists-container')
 var todocounter = 1
 const prompt = document.getElementById('todo-prompt')
 
-//Loading Contents on Arrival from localStorage 
-for (let i = 0; i < localStorage.length; i++) {
-    
-    //Obtaining key and value
-    const key = localStorage.key(i)
-    const value = localStorage.getItem(key)
+//TODO LIST PROGRAM
+//Adding an element
 
-    //Loading Items
-    const loadedItem = document.createElement("div")
-    loadedItem.classList.add("list")
-    loadedItem.id = `${key}`
+function updateState() {
+    const elements = document.querySelectorAll('.list')
+    const emptyContainer = document.getElementById('empty-container')
 
-    //Random ID generator
-    var rn = Date.now()
+    console.log(elements.length)
 
-    //Defining List
-    loadedItem.innerHTML = `
-    <input type="checkbox" id="todo${rn}" name="todo${rn}">
-    <label for="todo${rn}">${value}</label><br>
-    `
-    //Appending 
-    list.appendChild(loadedItem)
+    if (elements.length == 0) {
+        emptyContainer.style.display = 'flex'
+        emptyContainer.style.opacity = 1
+    }
+    else {
+        emptyContainer.style.display = 'none'
+        emptyContainer.style.opacity = 0
+    }
 }
 
-/*For Chrome Storage
-chrome.storage.local.get(null, function(items) {
-  for (const [key, value] of Object.entries(items)) {
-
-    //Loading Items
-    const loadedItem = document.createElement("div")
-    loadedItem.classList.add("list")
-    loadedItem.id = `${key}`
-
-    //Random ID generator
-    var rn = Date.now()
-
-    //Defining List
-    loadedItem.innerHTML = `
-    <input type="checkbox" id="todo${rn}" name="todo${rn}">
-    <label for="todo${rn}">${value}</label><br>
-    `
-    //Appending 
-    list.appendChild(loadedItem)
-
-  }
-});
-*/
-
-//Adding an element
 addButton.addEventListener('click',  () => {
 
     //Changing appearance of prompt
     prompt.style.display = "flex"
+    document.getElementById('cover').style.display = 'flex'
 
     document.getElementById('save').addEventListener('click', () => {
 
@@ -69,6 +39,7 @@ addButton.addEventListener('click',  () => {
         if (val.trim() == "") {
             document.getElementById('todo-input').value = ""
             document.getElementById('todo-prompt').style.display = "none"
+            document.getElementById('cover').style.display = 'none'
             return true
         }
 
@@ -98,8 +69,10 @@ addButton.addEventListener('click',  () => {
         //Wrapping up and appending List
         document.getElementById('todo-input').value = ""
         document.getElementById('todo-prompt').style.display = "none"
+        document.getElementById('cover').style.display = 'none'
         list.appendChild(newItem)
 
+       updateState()
     })
 })
 
@@ -107,6 +80,7 @@ addButton.addEventListener('click',  () => {
 document.getElementById('cancel').addEventListener('click', () => {
     document.getElementById('todo-input').value = ""
     document.getElementById('todo-prompt').style.display = "none"
+    document.getElementById('cover').style.display = 'none'
 })
 
 //Removing To Do Item
@@ -129,8 +103,12 @@ document.getElementById("lists-container").addEventListener("change", function(e
                 todoItem.remove()
                 localStorage.removeItem(todoItem.id)
 
+                const elements = document.querySelector('list')
+
                 //Chrome Storage
                 //chrome.storage.local.remove(todoItem.id);
+                
+                updateState()
 
             }, 1500);
 

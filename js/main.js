@@ -1,7 +1,10 @@
 //Welcome message - Console
 console.log("Welcome to Numa.")
-  
-//Clock function
+
+//Global ID variable since I was facing some issues
+let ID = null
+
+//Clock & Calendar function
 function update() {
     let now = new Date()
 
@@ -67,11 +70,30 @@ function addLink(e) {
     e.stopPropagation()
     e.preventDefault()
 
-    const ID = e.currentTarget.id
+    ID = e.currentTarget.id
+    console.log(ID)
     const linkPrompt = document.getElementById('link-prompt')
     const url = document.getElementById('url-input')
     const title = document.getElementById('title-input')
     linkPrompt.style.display = 'flex'
+    document.getElementById('cover').style.display = 'flex'
+
+    //Obtaining Previous Link elements from the localStorage/chrome.storage.local
+    //For localStorage
+    const tempLink = JSON.parse(localStorage.getItem(`link-${ID}`) || 'null')
+    if (tempLink !== null) {
+        url.value = tempLink[1]
+        title.value = tempLink[2]
+    }
+
+    /* For chrome.storage.local
+    chrome.storage.local.get(`link-${ID}`, function (result) {
+        const tempLink = result[`link-${ID}`]
+        if (tempLink !== null) {
+            url.value = tempLink[1]
+            title.value = tempLink[2]
+        }
+    });*/
 
     //Cancelling Process
     const linkCancel = document.getElementById('link-cancel')
@@ -80,38 +102,8 @@ function addLink(e) {
         url.value = ""
         title.value = ""
         linkPrompt.style.display = 'none'
+        document.getElementById('cover').style.display = 'none'
     })
-
-    //Saving Process
-    const linkSave = document.getElementById('link-save')
-    linkSave.addEventListener('click', () => {
-        const URLV = url.value
-        const TITLE = title.value
-
-        //If no URL is given
-        if (URLV.trim() == "") {
-            url.value = ""
-            title.value = ""
-            linkPrompt.style.display = 'none'
-            return true
-        }
-
-        //Else case, and obviously cuz I was lazy
-        //Getting URL
-        const domain = new URL(URLV).hostname
-
-        //Changing image, title and href
-        document.getElementById(`link-image-div-${ID}`).innerHTML = `<img class="url-image" src="https://icons.duckduckgo.com/ip3/${domain}.ico">`
-        document.getElementById(`link-name-${ID}`).innerHTML = TITLE
-        document.getElementById(`link-${ID}`).href = URLV
-
-        //Wrapping Up
-        url.value = ""
-        title.value = ""
-        linkPrompt.style.display = 'none'
-    })
-
-
 }
 
 //   :(
@@ -119,3 +111,50 @@ linkBtn1.addEventListener('click', addLink)
 linkBtn2.addEventListener('click', addLink)
 linkBtn3.addEventListener('click', addLink)
 linkBtn4.addEventListener('click', addLink)
+
+
+//Saving Process done
+const linkSave = document.getElementById('link-save')
+linkSave.addEventListener('click', () => {
+    const URLV = document.getElementById('url-input').value
+    const TITLE = document.getElementById('title-input').value
+
+    //If no URL is given
+    if (URLV.trim() == "") {
+        document.getElementById('url-input').value = ""
+        document.getElementById('title-input').value = ""
+        linkPrompt.style.display = 'none'
+        document.getElementById('cover').style.display = 'none'
+        return true
+    }
+
+    //Else case, and obviously cuz I was lazy
+    //Getting URL
+    const domain = new URL(URLV).hostname
+
+    console.log(ID)
+
+    //Changing image, title and href
+    document.getElementById(`link-image-div-${ID}`).innerHTML = `<img class="url-image" src="https://icons.duckduckgo.com/ip3/${domain}.ico">`
+    document.getElementById(`link-name-${ID}`).innerHTML = TITLE
+    document.getElementById(`link-${ID}`).href = URLV
+
+    //Setting in localStorage
+    const linkElement = [domain, URLV, TITLE]
+    localStorage.setItem(`link-${ID}`,JSON.stringify(linkElement))
+
+    //chrome.storage.local
+    /*
+    const Element = [domain, URLV, TITLE];
+    chrome.storage.local.set({ [`link-${ID}`]: myStrings }, function () {
+      console.log('Link Saved.');
+    });*/
+
+    //Wrapping Up
+    const linkPrompt = document.getElementById('link-prompt')
+
+    document.getElementById('url-input').value = ""
+    document.getElementById('title-input').value = ""
+    linkPrompt.style.display = 'none'
+    document.getElementById('cover').style.display = 'none'
+})
