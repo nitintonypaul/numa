@@ -1,5 +1,5 @@
 # <img src="assets/favicon.ico" alt="Numa Favicon" width="24" style="vertical-align:middle;margin-right:8px;"/> Numa
-> _“Cut the clutter. Clear the mind. Conquer the tab.”_  
+> _“Reorganize. Refocus. Reload.”_  
 
 ![Under Development](https://img.shields.io/badge/status-in%20development-yellow)
 
