@@ -13,14 +13,14 @@ body {
 
 ::-webkit-scrollbar {
     width: 5px;
-    background-color: transparent;
+    background-color: var(--bg-gradient);
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--bg-gradient);
+    background-color: var(--color);
     opacity: 10%;
-    border-radius: 10px;
+    border-radius: 100px;
 }
 
 ::selection {
@@ -44,6 +44,18 @@ a {
     0% {opacity: 0;}
     50% {opacity: 0;}
     100% {opacity: 0.5;}
+}
+
+/*Overlay*/
+.cover {
+    display: none;
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    z-index: 5;
+    top: 0;
+    background-color: var(--bg-color);
+    opacity: 50%;
 }
 
 /*Settings Button*/
@@ -74,7 +86,7 @@ a {
 }
 /*Greeting Container*/
 .greeting-container {
-    padding: 10px 10px;
+    padding: 10px 20px;
     width: max-content;
     display: flex;
     user-select: none;
@@ -101,16 +113,16 @@ a {
     gap: 10px;
     flex-direction: column;
     position: absolute;
-    z-index: 1;
-    background-color: var(--bg-color);
+    z-index: 11;
+    background-color: var(--prompt-color);
     padding: 20px 20px;
     border-radius: 10px;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     width: 400px;
-    height: 250px;
-    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.4);
+    height: 220px;
+    box-shadow: 0px 20px 100px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     border: 1px solid var(--color);
 }
@@ -149,10 +161,11 @@ a {
     display: flex;
     flex-direction: row;
     gap: 10px;
-    padding: 10px 10px;
+    padding: 20px 10px;
     margin: 10px 10px;
     width: max-content;
     user-select: none;
+    border-radius: 10px;
 
     animation: pop-fade 1.5s;
 }
@@ -171,16 +184,14 @@ a {
     padding: 2px 2px;
     cursor: pointer;
     outline: none;
-    border: 2px solid var(--bg-color);
+    border: none;
     z-index: 10;
     display: none;
-    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    transition: opacity 0.2s;
 }
 
 .add-link-button:hover {
-    background-color: var(--bg-color);
-    color: var(--color);
-    border-color: var(--color);
+    opacity: 70%;
 }
 
 .link-element {
@@ -250,7 +261,7 @@ a {
 .clock-calendar-container {
     display: flex;
     flex-direction: column;
-    padding: 10px 10px;
+    padding: 10px 20px;
     width: max-content;
     border-radius: 10px;
     position: absolute;
@@ -287,15 +298,15 @@ a {
     border-radius: 10px;
     padding: 20px 20px;
     transform: translate(-50%,-50%);
-    background-color: var(--bg-color);
+    background-color: var(--prompt-color);
     height: 150px;
     width: 400px;
-    z-index: 2;
+    z-index: 11;
     display: none;
     gap: 10px;
     flex-direction: column;
     justify-content: center;
-    box-shadow: 0px 0px 100px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 20px 100px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     border: 1px solid var(--color);
 }
@@ -395,7 +406,6 @@ a {
     overflow-y: scroll;
 
     animation: pop-fade 1.5s;
-
 }
 
 .heading {
@@ -435,6 +445,7 @@ a {
     gap: 10px;
     font-family: Funnel Display;
     user-select: none;
+    position: relative;
 }
 
 .list {
@@ -472,4 +483,21 @@ a {
    word-wrap: break-word;
    width: 80%;
    overflow: hidden;
+}
+
+.empty-container {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    margin: 20px 0px;
+}
+
+.empty {
+    font-size: 1.1rem;
 }

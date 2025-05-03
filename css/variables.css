@@ -1,7 +1,8 @@
 :root {
-    /*LIGHT MODE PRIM: #E0E0E0 GRAD: #FFF SEC: #1F1F1F*/
-    /*DARK MODE PRIM: #1F1F1F GRAD: #000 SEC: #E0E0E0*/
+    /*LIGHT MODE PRIM: #E0E0E0 GRAD: #FFF SEC: #1F1F1F PROMPT:#eeeeee*/
+    /*DARK MODE PRIM: #1F1F1F GRAD: #000 SEC: #E0E0E0 PROMPT:#111111*/
     --bg-color: #1f1f1f;
     --bg-gradient: #000;
     --color: #e0e0e0;
+    --prompt-color: #111;
 }
