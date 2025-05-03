@@ -39,6 +39,9 @@
         <label class="loading-text">Loading</label>
     </div>
 
+    <!--Overlay-->
+    <div class="cover" id="cover"></div>
+
     <!--Settings-->
     <div class="settings-button">
         <i class='bx bxs-cog'></i>
@@ -59,10 +62,10 @@
     <div class="link-prompt" id="link-prompt">
 
         <label class="link-url" id="link-url">URL</label>
-        <input type="text" id="url-input" class="link-input">
+        <input type="text" id="url-input" class="link-input" placeholder="www.example.com">
 
         <label class="link-title" id="link-title">Title</label>
-        <input type="text" id="title-input" class="link-input" maxlength="20">
+        <input type="text" id="title-input" class="link-input" maxlength="20" placeholder="Example">
 
         <div class="save-cancel-container">
             <button class="cancel" id="link-cancel">Cancel</button>
@@ -153,15 +156,21 @@
 
         <div class="lists-container" id="lists-container">
 
+            <!-- TODO list format
             <div class="list" id="todo-1">
                 <input type="checkbox" id="todo1">
                 <label for="todo1">Eat Breakfast</label><br>
             </div>
+            -->
 
+            <div class="empty-container" id="empty-container">
+                <label class="empty">Empty</label>
+            </div>
         </div>
     </div>
 
     <!--Script-->
+    <script src="data/loadData.js"></script>
     <script src="js/main.js"></script>
     <script src="js/todo.js"></script>
     <script src="data/zenquotes.js"></script>
