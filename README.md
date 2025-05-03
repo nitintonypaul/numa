@@ -10,7 +10,7 @@
 1. [What Is NUMA?](#what-is-NUMA)  
 2. [Key Features](#key-features--expected)
 3. [Usage](#Usage--expected)
-4. [Screenshots & Design](#screenshots--design)  
+4. [Design](#design)  
 5. [Next Steps](#next-steps)  
 6. [License](#license)
 
@@ -60,7 +60,7 @@ Or, if you prefer acronyms: **Neutral Utility for Maintaining Attention.**
 
 ---
 
-## 📸 Screenshots & Design
+## 📸 Design
 
 > _“Design is never finished—only paused.”_
 
