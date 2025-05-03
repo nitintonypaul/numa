@@ -32,7 +32,7 @@ for (let i = 0; i < localStorage.length; i++) {
         loadedItem.id = `${key}`
         
         //Random ID generator
-        var rn = Date.now()
+        var rn = Date.now() + i
         
         //Defining List
         loadedItem.innerHTML = `
@@ -73,11 +73,34 @@ updateState()
 
 
 //LINK data
+//Same checkForButton function in main.js
+function checkForButton () {
+
+    //Getting how many link elements are present
+    const linkElements = document.querySelectorAll('.link-a')
+    var count = 0
+    for (let i = 0; i < linkElements.length; i++) {
+        if (linkElements[i].style.display != 'none') {
+            count++
+        }
+    }
+
+    if (count < 4) {
+        document.getElementById('empty-link-container').style.display = 'flex'
+    }
+    else if (count == 4) {
+        document.getElementById('empty-link-container').style.display = 'none'
+    }
+    else {
+        console.log("Something very bad is happening")
+    }
+}
+
 const LINKS = [JSON.parse(localStorage.getItem('link-1') || 'null'), JSON.parse(localStorage.getItem('link-2') || 'null'), JSON.parse(localStorage.getItem('link-3') || 'null'), JSON.parse(localStorage.getItem('link-4') || 'null')]
 
 for (let i=0; i< LINKS.length; i++) {
     if (LINKS[i] === null) {
-        //document.getElementById(`link-${i+1}`).style.display = 'none'
+        document.getElementById(`link-${i+1}`).style.display = 'none'
         continue
     }
     
@@ -90,6 +113,7 @@ for (let i=0; i< LINKS.length; i++) {
     document.getElementById(`link-${i+1}`).href = urlv
 
 }
+checkForButton()
 
 /* for chrome.storage.local
 for (let i = 0; i < LINKS.length; i++) {
