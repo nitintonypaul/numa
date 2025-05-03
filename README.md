@@ -1,4 +1,4 @@
-# <img src="assets/favicon.ico" alt="Numa Favicon" width="24" style="vertical-align:middle;margin-right:8px;"/> Numa
+# <img src="assets/favicon.ico" alt="NUMA Favicon" width="24" style="vertical-align:middle;margin-right:8px;"/> NUMA
 > _“Reorganize. Refocus. Reload.”_  
 
 ![Under Development](https://img.shields.io/badge/status-in%20development-yellow)
@@ -7,7 +7,7 @@
 
 ## 📋 Table of Contents
 
-1. [What Is Numa?](#what-is-numa)  
+1. [What Is NUMA?](#what-is-NUMA)  
 2. [Key Features](#key-features--expected)
 3. [Usage](#Usage--expected)
 4. [Screenshots & Design](#screenshots--design)  
@@ -16,9 +16,12 @@
 
 ---
 
-## 🔍 What Is Numa?
+## 🔍 What Is NUMA?
 
-Numa is your forthcoming browser sidekick, a sleek Chrome extension that transforms your default new‑tab page into a distraction‑eating, focus‑boosting dashboard. Imagine your new tab with noise-canceling headphones: all you hear is focus.
+NUMA is your soon-to-arrive browser sidekick, a sleek Chrome extension that transforms your default new-tab page into a distraction-eating, focus-boosting dashboard.
+Think of it as your browser wearing noise-canceling headphones: all you hear is focus.
+
+Or, if you prefer acronyms: **Neutral Utility for Maintaining Attention.**
 
 > **Still in development.** Prototype pending – code is alive, but not quite breathing yet.
 
@@ -62,11 +65,8 @@ Numa is your forthcoming browser sidekick, a sleek Chrome extension that transfo
 > _“Design is never finished—only paused.”_
 
 <div align="center">
-  <img src="assets/numa-light.png" alt="Numa Light Theme" width="400" />
-  <img src="assets/numa-dark.png" alt="Numa Dark Theme" width="400" />
+  <img src="assets/NUMA-preview.png" alt="NUMA preview" />
 </div><br>
-
-> _Note: Design is not finalised_
 
 ---
 
