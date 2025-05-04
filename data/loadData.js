@@ -135,3 +135,24 @@ for (let i = 0; i < LINKS.length; i++) {
     });
 }
 */
+
+//LOADING NAME data
+const NAME = localStorage.getItem('name')
+if (NAME === null) {
+    console.log('onboarding')
+}
+else {
+    document.getElementById('name').innerHTML = NAME
+}
+
+/* chrome.storage.local
+chrome.storage.local.get('name', function(result) {
+    const NAME = result.name;
+    
+    if (NAME === undefined || NAME === null) {
+        console.log('onboarding');
+    } else {
+        document.getElementById('name').innerHTML = NAME;
+    }
+});
+*/
