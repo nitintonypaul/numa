@@ -10,8 +10,10 @@
 
     <!--Styles-->
     <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/onboarding.css">
+    <link rel="stylesheet" href="css/utils.css">
+    <link rel="stylesheet" href="css/styles.css">
 
     <!--Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,20 +41,113 @@
         <label class="loading-text">Loading</label>
     </div>
 
+    <!--Onboarding display-->
+    <div class="onboarding-display" id="onboarding">
+        <div class="onboarding-heading">
+            Hello.
+        </div>
+        <div class="onboarding-para">
+            <p>Are you new here?</p>
+        </div>
+        <input class="onboarding-input" id="onboarding-input" placeholder="Please enter your name" maxlength="10" autofocus>
+        <button class="onboarding-continue" id="onboarding-continue">Continue</button>
+    </div>
+
     <!--Overlay-->
     <div class="cover" id="cover"></div>
 
     <!--Settings-->
-    <div class="settings-button">
+    <div class="settings-button" id="settings-button">
         <i class='bx bxs-cog'></i>
     </div>
 
+    <!--Settings Container-->
+    <div class="settings-container" id="settings-container">
+
+        <!-- Appearance Section -->
+        <section class="appearance" id="appearance">
+            <h3 class="settings-heading" id="appearance-heading">Appearance</h3>
+            <div class="appearance-contents" id="appearance-contents">
+    
+                <div class="setting" id="light-mode">
+                    <label class="setting-name" for="light-mode-toggle">Light Mode</label>
+                    <input type="checkbox" id="light-mode-toggle">
+                </div>
+    
+                <div class="setting" id="monochrome">
+                    <label class="setting-name" for="monochrome-toggle">Monochrome Icons</label>
+                    <input type="checkbox" id="monochrome-toggle">
+                </div>
+    
+                <div class="setting" id="hide-clock">
+                    <label class="setting-name" for="hide-clock-toggle">Hide Clock</label>
+                    <input type="checkbox" id="hide-clock-toggle">
+                </div>
+
+                <div class="setting" id="change-name">
+                    <label class="setting-name" for="change-user-name">Change Display Name</label>
+                    <input type="text" id="change-name-input">
+                </div>
+    
+            </div>
+        </section>
+    
+        <!-- Behavioral Section -->
+        <section class="behavioral" id="behavioral">
+            <h3 class="settings-heading" id="behavioral-heading">Behavior</h3>
+            <div class="behavioral-contents" id="behavioral-contents">
+    
+                <div class="setting" id="toggle-todo">
+                    <label class="setting-name" for="toggle-todo-toggle">Hide To-Do List</label>
+                    <input type="checkbox" id="toggle-todo-toggle">
+                </div>
+    
+                <div class="setting" id="quote-switch">
+                    <label class="setting-name" for="quote-switch-toggle">Fun Facts (Instead of Quotes)</label>
+                    <input type="checkbox" id="quote-switch-toggle">
+                </div>
+    
+                <div class="setting" id="greetings-toggle">
+                    <label class="setting-name" for="greetings-toggle-toggle">Hide Greeting Message</label>
+                    <input type="checkbox" id="greetings-toggle-toggle">
+                </div>
+    
+                <div class="setting" id="focus-mode">
+                    <label class="setting-name" for="focus-mode-toggle">Focus Mode</label>
+                    <input type="checkbox" id="focus-mode-toggle">
+                </div>
+    
+            </div>
+        </section>
+    
+        <!-- Misc Section -->
+        <section class="misc" id="misc">
+            <h3 class="settings-heading" id="misc-heading">Miscellaneous</h3>
+            <div class="misc-contents" id="misc-contents">
+    
+                <div class="setting" id="clear-data">
+                    <label class="setting-name">Clear All Data</label>
+                    <button id="clear-data-button">Clear</button>
+                </div>
+    
+            </div>
+        </section>
+
+        <!-- Save/Cancel Buttons -->
+        <div class="settings-actions">
+            <button class="settings-status-button" id="save-settings">Save</button>
+            <button class="settings-status-button" id="cancel-settings">Cancel</button>
+        </div>
+    
+    </div>
+    
+
     <!--Greeting Division-->
-    <div class="greeting-container">
+    <div class="greeting-container" id="greeting-container">
         <div class="greeting" id="greeting">
             Good Morning,
         </div>
-        <div class="name">
+        <div class="name" id="name">
             John Doe
         </div>
     </div>
@@ -72,7 +167,7 @@
             <button class="save" id="link-save">Save</button>
         </div>
     </div>
-    <div class="link-container">
+    <div class="link-container" id="link-container">
 
         <a id="link-1" href="" class="link-a">
         <div class="link-element" id="link1">
@@ -132,7 +227,7 @@
     </div>
 
     <!--Clock & Calendar-->
-    <div class="clock-calendar-container">
+    <div class="clock-calendar-container" id="clock-calendar-container">
         <label id="clock" class="clock"></label>
         <label id="calendar" class="calendar"></label>
     </div>
@@ -149,7 +244,7 @@
         </div>
     </div>
 
-    <div class="todo-container">
+    <div class="todo-container" id="todo-container">
 
         <div class="heading">
             <label class="todo-name">TO-DO</label>
@@ -180,6 +275,7 @@
     <script src="js/main.js"></script>
     <script src="js/todo.js"></script>
     <script src="data/zenquotes.js"></script>
+    <script src="data/utils.js"></script>
     
 </body>
 
