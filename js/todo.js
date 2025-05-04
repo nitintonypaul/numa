@@ -11,8 +11,6 @@ function updateState() {
     const elements = document.querySelectorAll('.list')
     const emptyContainer = document.getElementById('empty-container')
 
-    console.log(elements.length)
-
     if (elements.length == 0) {
         emptyContainer.style.display = 'flex'
         emptyContainer.style.opacity = 1
@@ -51,7 +49,7 @@ addButton.addEventListener('click',  () => {
         //Updating chrome storage
         /*For Chrome Extension
         chrome.storage.local.set({newItem.id: val}, () => {
-            console.log("TO DO has been updated!")
+            console.log("TO DO has been updated")
         })*/
 
         //Updating Local Storage

@@ -1,6 +1,3 @@
-//Welcome message - Console
-console.log("Welcome to Numa.")
-
 //Global ID variable since I was facing some issues
 let ID = null
 
@@ -63,11 +60,6 @@ function update() {
 //Updating the function per 1000 milliseconds
 setInterval(update, 1000)
 update()
-
-
-// Changing Theme
-//const root = document.documentElement;
-//root.style.setProperty('--bg-color', '#ff007f');
 
 
 //LINK SYSTEM
@@ -147,7 +139,6 @@ linkSave.addEventListener('click', () => {
         //Looping through local storage
         for (let i = 0; i < localStorage.length; i++) {
             const KEY = localStorage.key(i)
-            console.log(KEY, localStorage.getItem(KEY));
 
             //Appending key to the array if its the necessary key, i.e link key
             if (KEY.includes('link')) {
@@ -169,12 +160,8 @@ linkSave.addEventListener('click', () => {
         //So we're doing a couple operations here, 
         //1. is changing the array we have of the format ["link-1","link-3"]... to ["1","3"] or the equivalent using map()
         //2. is comparing with the reference array and extracting the array which is missing in the reference array.. i.e the available divs for our links
-        console.log(keyArr)
         const extracted = keyArr.map(item => item.replace("link-",""))
-        console.log(extracted)
         const available = reference.filter(x => !extracted.includes(x))
-
-        console.log(available)
 
         //We obtain the first div possible from the array
         ID = available[0]
@@ -184,11 +171,12 @@ linkSave.addEventListener('click', () => {
 
          //try and catch done to ensure correct URL input
          try {
-             domain = new URL(URLV).hostname
+            domain = new URL(URLV).hostname
          }
          catch (error) {
-             alert("Invalid URL. Please ensure you have 'https://' before your link.")
-             return true
+            alert("No 'https://', no entry. Toss it in and try again.");
+            ID = null
+            return true
          }
 
          //Changing image, title and href
@@ -263,11 +251,10 @@ linkSave.addEventListener('click', () => {
         domain = new URL(URLV).hostname
     }
     catch (error) {
-        alert("Invalid URL. Please ensure you have 'https://' before your link.")
+        alert("No 'https://', no entry. Toss it in and try again.");
         return true
     }
-    
-    console.log(ID)
+
     //Changing image, title and href
     document.getElementById(`link-image-div-${ID}`).innerHTML = `<img class="url-image" src="https://icons.duckduckgo.com/ip3/${domain}.ico">`
     document.getElementById(`link-name-${ID}`).innerHTML = TITLE
@@ -306,6 +293,7 @@ function checkForButton() {
         }
     }
 
+    //Controlling the button's display status
     if (count < 4) {
         document.getElementById('empty-link-container').style.display = 'flex'
     }
@@ -327,3 +315,101 @@ function addLink() {
 
 
 document.getElementById('empty-link-container').addEventListener('click', addLink)
+
+
+//CHECKING FOR ONBOARDING
+
+function onboarding() {
+
+    //Displaying onboarding element
+    document.getElementById('onboarding').style.display = 'flex'
+
+    //A few constants
+    const continueBtn = document.getElementById('onboarding-continue');
+    const input = document.getElementById('onboarding-input');
+
+    //Event listener to disable button while input is ""
+    input.addEventListener('input', () => {
+        continueBtn.disabled = !input.value.trim()
+    });
+
+    //Continue case when the user has inputted their name
+    continueBtn.addEventListener('click', () => {
+
+        //obtaining user name
+        const userName = input.value
+
+        //Setting in localStorage
+        localStorage.setItem('name',userName)
+
+        //chrome.storage.local
+        /*chrome.storage.local.set({ name: userName }, function() {
+            if (chrome.runtime.lastError) {
+            console.error('Storage error:', chrome.runtime.lastError);
+            } 
+            else {
+                console.log('Name successfully saved!');
+             }
+        }); */
+
+        //Updating in the web-page
+        document.getElementById('name').innerHTML = userName
+
+        //Wrapping Up
+        document.getElementById('onboarding').style.opacity = 0
+        setTimeout(() => {
+            document.getElementById('onboarding').style.display = 'none';
+        }, 1000);
+    })
+}
+
+//Adding an event listener after DOM is loaded as I experiened funny issues
+window.addEventListener('DOMContentLoaded', () => {
+    
+    //Obtaining visited
+    const visted = localStorage.getItem('visited');
+    
+    /*chrome.storage.local
+    chrome.storage.local.get('visited', function(result) {
+        const visited = result.visited;
+    });*/
+
+    //Checking if the user has visited
+    if (!visted) {
+
+        //Calling the onboarding function
+        onboarding()
+  
+        //Default Settings
+        const settings = [
+            ['light-mode-toggle', false],
+            ['monochrome-toggle', false],
+            ['hide-clock-toggle', false],
+            ['toggle-todo-toggle', false],
+            ['quote-switch-toggle', false],
+            ['greetings-toggle-toggle', false],
+            ['focus-mode-toggle', false]
+        ];
+
+        //Converstion to object
+        const settingsObj = Object.fromEntries(settings);
+
+        //Saving to localStorage
+        localStorage.setItem('settings', JSON.stringify(settingsObj));
+
+        //Saving to chrome storage
+        //chrome.storage.local.set({ settings: settingsObj });
+
+
+        //Setting flag
+        localStorage.setItem('visited', 'true')
+
+        /*chrome.storage.local
+        chrome.storage.local.set({ visited: 'true' }, function() {
+            console.log('Visited flag set to true');
+        });*/
+    } 
+    else {
+      console.log("Welcome back.")
+    }
+})
