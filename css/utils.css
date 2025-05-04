@@ -1,0 +1,124 @@
+.settings-container {
+    display: none;
+    flex-direction: column;
+    z-index: 12;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 70vh;
+    width: 50vw;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: var(--prompt-color);
+    border: 1px solid var(--color);
+    box-shadow: 0px 20px 100px rgba(0, 0, 0, 0.1);
+    overflow-y: scroll;
+    scrollbar-width: none;
+    gap: 30px;
+    opacity: 1;
+}
+
+.settings-heading {
+    font-family: Archivo Black;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    padding: 0px 5px;
+    color: var(--color);
+    user-select: none;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.setting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Funnel Display', sans-serif;
+    font-size: 1.1rem;
+    padding: 10px 0;
+}
+
+.setting-name {
+    cursor: pointer;
+    user-select: none;
+    color: var(--color);
+}
+
+.setting input[type="checkbox"] {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--color);
+    border-radius: 50%;
+    background-color: transparent;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.setting input[type="checkbox"]:checked {
+    background-color: var(--color);
+}
+
+.setting input[type="checkbox"]:hover {
+    opacity: 0.8;
+}
+
+#change-name-input {
+    background-color: var(--bg-color);
+    border: 1px solid var(--color);
+    outline: none;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: Funnel Display;
+    font-size: 1rem;
+    color: var(--color);
+    opacity: 50%;
+    transition: opacity 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    justify-content: center;
+}
+
+#change-name-input:focus {
+    opacity: 1;
+}
+
+#clear-data-button {
+    font-family: 'Funnel Display', sans-serif;
+    font-size: 1rem;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--bg-color);
+    color: var(--color);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#clear-data-button:hover {
+    background-color: var(--color);
+    color: #e6000d;
+}
+
+.settings-status-button {
+
+    font-family: Funnel Display;
+    font-size: 1rem;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--bg-color);
+    color: var(--color);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.settings-status-button:hover {
+    background-color: var(--color);
+    color: var(--bg-color);
+}
