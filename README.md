@@ -37,8 +37,8 @@ Or, if you prefer acronyms: **Neutral Utility for Maintaining Attention.**
   Always know the hour. (No more frantic glances at your phone.)
 - **Time-Based Greeting**  
   Contextual greeting based on time of day. Not too important, but always nice to have.
-- **Daily Inspiration (via ZenQuotes API)**  
-  A fresh quote each day. (Fun facts option under consideration for a dash of trivia.)
+- **Daily Inspiration OR Fun Fact (via ZenQuotes & Useless Facts API)**  
+  A fresh quote each day or a fun fact to lighten your mood. Your choice.
 - **Light & Dark Themes**  
   Switch moods effortlessly—your eyeballs will thank you.
 
@@ -72,8 +72,6 @@ Or, if you prefer acronyms: **Neutral Utility for Maintaining Attention.**
 
 ## 📈 Next Steps
  - Turn prototype into fully working MVP
- - Additional Customizations using settings
- - Fun fact mode toggle
  - Official Chrome Web Store release
 
  ---
