@@ -40,7 +40,7 @@ Or, if you prefer acronyms: **Neutral Utility for Maintaining Attention.**
 - **Daily Inspiration OR Fun Fact (via ZenQuotes & Useless Facts API)**  
   A fresh quote each day or a fun fact to lighten your mood. Your choice.
 - **Light & Dark Themes**  
-  Switch moods effortlessly—your eyeballs will thank you.
+  Switch themes effortlessly—your eyeballs will thank you.
 
 ---
 
