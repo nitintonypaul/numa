@@ -396,9 +396,27 @@ a {
     color: var(--bg-color);
 }
 
-.save {
+.delete {
     position: relative;
     margin-left: auto;
+
+    font-family: Funnel Display;
+    font-size: 1rem;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--bg-color);
+    color: var(--color);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.delete:hover {
+    background-color: var(--color);
+    color: var(--bg-color);
+}
+.save {
+    position: relative;
+    margin-left: 10px;
 
     font-family: Funnel Display;
     font-size: 1rem;
