@@ -1,0 +1,22 @@
+/*Very Basic Media Layout. Will be updating in the future*/
+@media screen and (max-width: 768px) {
+    .greeting-container {
+        display: none !important;
+    }
+    .quote-container {
+        display: none !important;
+    }
+    .clock-calendar-container {
+        display: none !important;
+    }
+    .link-container {
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .todo-container {
+        top: 40%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
