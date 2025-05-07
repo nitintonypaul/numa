@@ -99,6 +99,28 @@ function updateLink(e) {
             title.value = tempLink[2]
         }
     });*/
+
+    //EVENT LISTENER FOR DELETE LINK button
+    document.getElementById('link-delete').addEventListener('click',() => {
+        //Resetting Values
+        document.getElementById('url-input').value = ""
+        document.getElementById('title-input').value = ""
+
+        //Removing from localStorage
+        localStorage.removeItem(`link-${ID}`)
+
+        //chrome.storage.local
+        //chrome.storage.local.remove(`link-${ID}`);
+
+        document.getElementById(`link-${ID}`).style.display = 'none'
+
+        //Usual process of resetting prompts
+        linkPrompt.style.display = 'none'
+        document.getElementById('cover').style.display = 'none'
+        checkForButton()
+        ID = null
+        return true  
+    })
 }
 
 //Cancelling Process
@@ -110,7 +132,21 @@ linkCancel.addEventListener('click', () => {
     title.value = ""
     linkPrompt.style.display = 'none'
     document.getElementById('cover').style.display = 'none'
+
+    //Setting the delete link button to be visible again
+    document.getElementById('link-delete').style.display = 'block'
+    document.getElementById('link-save').style.marginLeft = '10px'
+
+    //ID to null
     ID = null
+})
+
+//Event listener for empty link button
+//Removes the 'delete' button from the link prompt when click "Add new link" button
+document.getElementById('empty-link-button').addEventListener('click', () => {
+    
+    document.getElementById('link-delete').style.display = 'none'
+    document.getElementById('link-save').style.marginLeft = 'auto'
 })
 
 //   :(
@@ -169,41 +205,46 @@ linkSave.addEventListener('click', () => {
         //Declaring domain
         let domain = ""
 
-         //try and catch done to ensure correct URL input
-         try {
-            domain = new URL(URLV).hostname
-         }
-         catch (error) {
-            alert("No 'https://', no entry. Toss it in and try again.");
-            ID = null
-            return true
-         }
+        //try and catch done to ensure correct URL input
+        try {
+           domain = new URL(URLV).hostname
+        }
+        catch (error) {
+           alert("No 'https://', no entry. Toss it in and try again.");
+           ID = null
+           return true
+        }
 
-         //Changing image, title and href
-         document.getElementById(`link-${ID}`).style.display = 'flex'
-         document.getElementById(`link-image-div-${ID}`).innerHTML = `<img class="url-image" src="https://icons.duckduckgo.com/ip3/${domain}.ico">`
-         document.getElementById(`link-name-${ID}`).innerHTML = TITLE
-         document.getElementById(`link-${ID}`).href = URLV
-     
-         //Setting in localStorage
-         const linkElement = [domain, URLV, TITLE]
-         localStorage.setItem(`link-${ID}`,JSON.stringify(linkElement))
-     
-         //chrome.storage.local
-         /*
-         const Element = [domain, URLV, TITLE];
-         chrome.storage.local.set({ [`link-${ID}`]: myStrings }, function () {
-           console.log('Link Saved.');
-         });*/
-     
-         //Wrapping up with usual procedure
-         document.getElementById('url-input').value = ""
-         document.getElementById('title-input').value = ""
-         checkForButton()
-         linkPrompt.style.display = 'none'
-         document.getElementById('cover').style.display = 'none'
-         ID = null
-         return true
+        //Changing image, title and href
+        document.getElementById(`link-${ID}`).style.display = 'flex'
+        document.getElementById(`link-image-div-${ID}`).innerHTML = `<img class="url-image" src="https://icons.duckduckgo.com/ip3/${domain}.ico">`
+        document.getElementById(`link-name-${ID}`).innerHTML = TITLE
+        document.getElementById(`link-${ID}`).href = URLV
+    
+        //Setting in localStorage
+        const linkElement = [domain, URLV, TITLE]
+        localStorage.setItem(`link-${ID}`,JSON.stringify(linkElement))
+    
+        //chrome.storage.local
+        /*
+        const Element = [domain, URLV, TITLE];
+        chrome.storage.local.set({ [`link-${ID}`]: myStrings }, function () {
+          console.log('Link Saved.');
+        });*/
+    
+        //Wrapping up with usual procedure
+        document.getElementById('url-input').value = ""
+        document.getElementById('title-input').value = ""
+        checkForButton()
+        linkPrompt.style.display = 'none'
+        document.getElementById('cover').style.display = 'none'
+
+        //Setting the delete link button to be visible again
+        document.getElementById('link-delete').style.display = 'block'
+        document.getElementById('link-save').style.marginLeft = '10px'
+
+        ID = null
+        return true
     }
 
     //If no URL and Title is given [Deleting Element]
@@ -225,6 +266,9 @@ linkSave.addEventListener('click', () => {
         document.getElementById('cover').style.display = 'none'
         checkForButton()
         ID = null
+        //Setting the delete link button to be visible again
+        document.getElementById('link-delete').style.display = 'block'
+        document.getElementById('link-save').style.marginLeft = '10px'
         return true
     }
 
@@ -238,6 +282,10 @@ linkSave.addEventListener('click', () => {
         //Usual process of resetting prompts
         linkPrompt.style.display = 'none'
         document.getElementById('cover').style.display = 'none'
+        
+        //Setting the delete link button to be visible again
+        document.getElementById('link-delete').style.display = 'block'
+        document.getElementById('link-save').style.marginLeft = '10px'
         ID = null
         return true
     }
@@ -277,6 +325,9 @@ linkSave.addEventListener('click', () => {
     checkForButton()
     linkPrompt.style.display = 'none'
     document.getElementById('cover').style.display = 'none'
+    //Setting the delete link button to be visible again
+    document.getElementById('link-delete').style.display = 'block'
+    document.getElementById('link-save').style.marginLeft = '10px'
     ID = null
 })
 
@@ -317,8 +368,7 @@ function addLink() {
 document.getElementById('empty-link-container').addEventListener('click', addLink)
 
 
-//CHECKING FOR ONBOARDING
-
+//Onboarding function
 function onboarding() {
 
     //Displaying onboarding element
@@ -336,8 +386,29 @@ function onboarding() {
     //Continue case when the user has inputted their name
     continueBtn.addEventListener('click', () => {
 
+        //ASSIGNING DEFAULT SETTINGS
         //obtaining user name
         const userName = input.value
+
+        //Setting Default Settings
+        const settings = [
+            ['light-mode-toggle', false],
+            ['monochrome-toggle', false],
+            ['hide-clock-toggle', false],
+            ['toggle-todo-toggle', false],
+            ['quote-switch-toggle', false],
+            ['greetings-toggle-toggle', false],
+            ['focus-mode-toggle', false]
+        ];
+
+        //Converstion to object
+        const settingsObj = Object.fromEntries(settings);
+
+        //Saving to localStorage
+        localStorage.setItem('settings', JSON.stringify(settingsObj));
+
+        //Saving to chrome storage
+        //chrome.storage.local.set({ settings: settingsObj });
 
         //Setting in localStorage
         localStorage.setItem('name',userName)
@@ -366,50 +437,21 @@ function onboarding() {
 //Adding an event listener after DOM is loaded as I experiened funny issues
 window.addEventListener('DOMContentLoaded', () => {
     
-    //Obtaining visited
-    const visted = localStorage.getItem('visited');
+    //Obtaining settings
+    const visited = localStorage.getItem('settings');
     
     /*chrome.storage.local
-    chrome.storage.local.get('visited', function(result) {
-        const visited = result.visited;
+    chrome.storage.local.get('settings', function(result) {
+        const visited = result.settings;
     });*/
 
-    //Checking if the user has visited
-    if (!visted) {
+    //Checking if the user has visited using settings
+    if (visited === null) {
 
         //Calling the onboarding function
         onboarding()
-  
-        //Default Settings
-        const settings = [
-            ['light-mode-toggle', false],
-            ['monochrome-toggle', false],
-            ['hide-clock-toggle', false],
-            ['toggle-todo-toggle', false],
-            ['quote-switch-toggle', false],
-            ['greetings-toggle-toggle', false],
-            ['focus-mode-toggle', false]
-        ];
-
-        //Converstion to object
-        const settingsObj = Object.fromEntries(settings);
-
-        //Saving to localStorage
-        localStorage.setItem('settings', JSON.stringify(settingsObj));
-
-        //Saving to chrome storage
-        //chrome.storage.local.set({ settings: settingsObj });
-
-
-        //Setting flag
-        localStorage.setItem('visited', 'true')
-
-        /*chrome.storage.local
-        chrome.storage.local.set({ visited: 'true' }, function() {
-            console.log('Visited flag set to true');
-        });*/
     } 
     else {
-      console.log("Welcome back.")
+        console.log("Welcome back.")
     }
 })
