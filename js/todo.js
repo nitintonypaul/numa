@@ -1,115 +1,85 @@
-//TODO LIST JS
-//Variables
-const addButton = document.getElementById('add-todo')
-var todocounter = 1
-const prompt = document.getElementById('todo-prompt')
+// Variables
+const addButton = document.getElementById('add-todo');
+var todocounter = 1;
+const prompt = document.getElementById('todo-prompt');
+const saveButton = document.getElementById('save');
+const cancelButton = document.getElementById('cancel');
+const listsContainer = document.getElementById('lists-container');
 
-//TODO LIST PROGRAM
-//Adding an element
-
+// Update state to show or hide the empty container based on list items
 function updateState() {
-    const elements = document.querySelectorAll('.list')
-    const emptyContainer = document.getElementById('empty-container')
+    const elements = document.querySelectorAll('.list');
+    const emptyContainer = document.getElementById('empty-container');
 
-    if (elements.length == 0) {
-        emptyContainer.style.display = 'flex'
-        emptyContainer.style.opacity = 1
-    }
-    else {
-        emptyContainer.style.display = 'none'
-        emptyContainer.style.opacity = 0
+    if (elements.length === 0) {
+        emptyContainer.style.display = 'flex';
+        emptyContainer.style.opacity = 1;
+    } else {
+        emptyContainer.style.display = 'none';
+        emptyContainer.style.opacity = 0;
     }
 }
 
-addButton.addEventListener('click',  () => {
+// Add a new ToDo item
+addButton.addEventListener('click', () => {
+    prompt.style.display = "flex";
+    document.getElementById('cover').style.display = 'flex';
+});
 
-    //Changing appearance of prompt
-    prompt.style.display = "flex"
-    document.getElementById('cover').style.display = 'flex'
+// Handle save button click to create a new item
+saveButton.addEventListener('click', () => {
+    const val = document.getElementById('todo-input').value.trim();
 
-    document.getElementById('save').addEventListener('click', () => {
+    // Check for empty input
+    if (val === "") {
+        document.getElementById('todo-input').value = "";
+        prompt.style.display = "none";
+        document.getElementById('cover').style.display = 'none';
+        return true;
+    }
 
-        //Obtaining Value
-        var val = document.getElementById('todo-input').value
-        
+    const newItem = document.createElement("div");
+    newItem.classList.add("list");
+    newItem.id = `todo-${Date.now()}`;
 
-        //Checking for Null Entry
-        if (val.trim() == "") {
-            document.getElementById('todo-input').value = ""
-            document.getElementById('todo-prompt').style.display = "none"
-            document.getElementById('cover').style.display = 'none'
-            return true
-        }
+    // Save to Local Storage
+    localStorage.setItem(newItem.id, val);
 
-        //Else case, but I didn't give else cuz I was lazy
-        const newItem = document.createElement("div")
-        newItem.classList.add("list")
-        newItem.id = `todo-${Date.now()}`
+    const rn = Date.now();
+    newItem.innerHTML = `
+        <input type="checkbox" id="todo${rn}" name="todo${rn}">
+        <label for="todo${rn}">${val}</label>
+    `;
 
-        //Updating chrome storage
-        /*For Chrome Extension
-        chrome.storage.local.set({newItem.id: val}, () => {
-            console.log("TO DO has been updated")
-        })*/
+    document.getElementById('todo-input').value = "";
+    prompt.style.display = "none";
+    document.getElementById('cover').style.display = 'none';
+    document.getElementById('lists-container').appendChild(newItem);
 
-        //Updating Local Storage
-        localStorage.setItem(newItem.id, val)
+    updateState();
+});
 
-        //Random ID generator
-        var rn = Date.now()
+// Cancel action and hide prompt
+cancelButton.addEventListener('click', () => {
+    document.getElementById('todo-input').value = "";
+    prompt.style.display = "none";
+    document.getElementById('cover').style.display = 'none';
+});
 
-        //Defining the List
-        newItem.innerHTML = `
-        <input type="checkbox" id="todo${rn}" name="todo${rn}"">
-        <label for="todo${rn}">${val}</label><br>
-        `
-
-        //Wrapping up and appending List
-        document.getElementById('todo-input').value = ""
-        document.getElementById('todo-prompt').style.display = "none"
-        document.getElementById('cover').style.display = 'none'
-        list.appendChild(newItem)
-
-       updateState()
-    })
-})
-
-//Cancelling Process
-document.getElementById('cancel').addEventListener('click', () => {
-    document.getElementById('todo-input').value = ""
-    document.getElementById('todo-prompt').style.display = "none"
-    document.getElementById('cover').style.display = 'none'
-})
-
-//Removing To Do Item
-document.getElementById("lists-container").addEventListener("change", function(e) {
-
-    //Checking for checkbox checked?
+// Removing ToDo item on checkbox check
+listsContainer.addEventListener("change", function (e) {
     if (e.target && e.target.type === "checkbox" && e.target.checked) {
-        
-        
-        //Locating closest .list
-        const todoItem = e.target.closest(".list")
+        const todoItem = e.target.closest(".list");
 
-        //Checking availability and removal of item
         if (todoItem) {
-            todoItem.style.transition = "opacity 1.5s ease"
-            todoItem.style.opacity = 0
-            
-            //Removing Item after Visual Cue
+            todoItem.style.transition = "opacity 1.5s ease";
+            todoItem.style.opacity = 0;
+
             setTimeout(() => {
-                todoItem.remove()
-                localStorage.removeItem(todoItem.id)
-
-                const elements = document.querySelector('list')
-
-                //Chrome Storage
-                //chrome.storage.local.remove(todoItem.id);
-                
-                updateState()
-
+                todoItem.remove();
+                localStorage.removeItem(todoItem.id);
+                updateState();
             }, 1500);
-
         }
     }
-})
+});
