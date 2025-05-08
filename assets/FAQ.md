@@ -31,7 +31,7 @@
    Right now, NUMA is only available for Chrome. Stay tuned for updates on potential cross-browser support.
 
 ### 11. **What should I do if my NUMA extension doesn’t show up?**
-   > Try restarting the extension by disabling and re-enabling it. If the problem persists, contact us at [support email].
+   > Try restarting the extension by disabling and re-enabling it. If the problem persists, contact us at [...].
 
 ### 12. **Is NUMA free to use?**
    Yes, NUMA is completely free and open-source.
