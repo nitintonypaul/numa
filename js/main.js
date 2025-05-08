@@ -430,18 +430,23 @@ function onboarding() {
         fetch("https://zenquotes.io/api/today")
         .then(res => res.json())
         .then(data => {
-          const quote = data[0].q
-          const author = data[0].a
+            const quote = data[0].q
+            const author = data[0].a
 
-          document.getElementById("quote").innerText = `“${quote}”`
-          document.getElementById("author").innerText = `— ${author}`
+            //Displaying quote on the website
+            document.getElementById("quote").innerText = `“${quote}”`
+            document.getElementById("author").innerText = `— ${author}`
+
+            //Saving quote to localStorage
+            localStorage.setItem('quote', quote)
+            localStorage.setItem('author',author)
         })
 
         //Error
         .catch(error => {
-          document.getElementById("quote").innerText = "Failed to load quote"
-          document.getElementById("author").innerText = ""
-          console.error("Error fetching quote:", error)
+            document.getElementById("quote").innerText = `“The ones who are crazy enough to think they can change the world are the ones who do.”`
+            document.getElementById("author").innerText = `— Steve Jobs`
+            console.error("Error fetching quote: ", error)
         })
 
         //Wrapping Up

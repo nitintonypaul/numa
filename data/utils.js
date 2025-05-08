@@ -11,18 +11,29 @@ document.addEventListener('DOMContentLoaded', () => {
             fetch("https://zenquotes.io/api/today")
             .then(res => res.json())
             .then(data => {
-              const quote = data[0].q
-              const author = data[0].a
+                let quote = data[0].q
+                let author = data[0].a
+                
+                //Checking if the response obtained is failed response
+                if (author.includes('zenquotes')) {
+                    quote = localStorage.getItem('quote')
+                    author = localStorage.getItem('author')
+                }
+                else {
+                    localStorage.setItem('quote', quote)
+                    localStorage.setItem('author', author)
+                }
 
-              document.getElementById("quote").innerText = `“${quote}”`
-              document.getElementById("author").innerText = `— ${author}`
+                //Adding to webpage
+                document.getElementById("quote").innerText = `“${quote}”`
+                document.getElementById("author").innerText = `— ${author}`
             })
 
             //Error
             .catch(error => {
-              document.getElementById("quote").innerText = "Failed to load quote."
-              document.getElementById("author").innerText = ""
-              console.error("Error fetching quote:", error)
+                document.getElementById("quote").innerText = `“The ones who are crazy enough to think they can change the world are the ones who do.”`
+                document.getElementById("author").innerText = `— Steve Jobs`
+                console.error("Error fetching quote: ", error)
             })
         }
 
@@ -31,16 +42,33 @@ document.addEventListener('DOMContentLoaded', () => {
             fetch("https://api.viewbits.com/v1/uselessfacts?mode=today")
             .then(res => res.text())
             .then(raw => {
-              console.log("Raw response:", raw)
-              const data = JSON.parse(raw)
-              console.log("Parsed fact:", data.text)
-              document.getElementById("author").innerText = data.text;
-              document.getElementById("quote").innerText = ""
+
+                //Parsing raw data
+                const data = JSON.parse(raw)
+
+                //Displaying data in website
+                document.getElementById("author").innerText = data.text;
+                document.getElementById("quote").innerText = ""
+
+                //Storing fact in localStorage
+                localStorage.setItem('fact', data.text)
             })
             .catch(error => {
-              document.getElementById("author").innerText = "Failed to load funny fact.";
-              document.getElementById("quote").innerText = ""
-              console.error("Error fetching funny fact:", error);
+                
+                //Checking if 'fact' exists in localStorage. If it does, it is loaded, temporarily
+                if (localStorage.getItem('fact') !== null) {
+                    document.getElementById("author").innerText = `${localStorage.getItem('fact')}`;
+                    document.getElementById("quote").innerText = ""
+                }
+                else {
+
+                    //Else a fallback is shown
+                    document.getElementById("author").innerText = "Bananas are berries, but strawberries aren't.";
+                    document.getElementById("quote").innerText = ""
+                }
+
+                //Error message is sent anyway
+                console.error("Error fetching funny fact:", error);
             });
         }
 
