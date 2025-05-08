@@ -54,26 +54,29 @@ Or, if you prefer acronyms: **Neutral Utility for Maintaining Attention.**
 
 ## 🛠️ Installation
 
-### **For Development (Unpacked Extension)**
+### 🔧 For Development (Unpacked Extension)
 
-1. **Download or Clone the Repository:**
-   - Download the extension files or clone the repo using:  
-     `git clone https://github.com/nitintonypaul/numa`
+1. **Download the Latest Release**  
+   Head over to the [Releases](https://github.com/nitintonypaul/numa/releases) section and download the latest `.zip` file of NUMA.
 
-2. **Open Chrome Extensions Page:**
-   - Go to `chrome://extensions/` in your Chrome browser.
+2. **Extract the Files**  
+   Unzip the downloaded archive to a convenient location on your machine.
 
-3. **Enable Developer Mode:**
-   - Toggle the **Developer Mode** switch on in the top right corner.
+3. **Open Chrome Extensions Page**  
+   Navigate to `chrome://extensions/` in your Chrome browser.
 
-4. **Load Unpacked Extension:**
-   - Click **Load unpacked** and select the folder where you have the extension files.
+4. **Enable Developer Mode**  
+   Toggle the **Developer mode** switch in the top-right corner.
 
-5. **Enjoy:**
-   - After the extension is loaded, open a new tab to see the NUMA dashboard.
+5. **Load Unpacked Extension**  
+   Click **Load unpacked** and select the folder where you extracted the extension files.
 
-### **For Chrome Web Store (Coming Soon):**
-- **NUMA** will soon be available for installation directly from the [Chrome Web Store](https://chrome.google.com/webstore).
+6. **Enjoy NUMA**  
+   Once loaded, open a new tab to experience your minimalistic dashboard in action.
+
+### 🛒 From Chrome Web Store (Coming Soon)
+
+Stay tuned! The official Web Store release is on the roadmap.
 
 ---
 
