@@ -1,10 +1,10 @@
-//File to load all data in localStorage/chrome.storage.local
+//File to load all data in localStorage/chrome.storage
 
 //LOADING PREFERENCE
 function loadPreference() {
     //FUNCTIONS FOR ZenQuotes and Useless Facts
     function zenQ() {
-        fetch("https://api.allorigins.win/raw?url=https://zenquotes.io/api/today")
+        fetch("https://zenquotes.io/api/today")
         .then(res => res.json())
         .then(data => {
           const quote = data[0].q
@@ -23,7 +23,7 @@ function loadPreference() {
     }
 
     function uselessFact() {
-        fetch("https://api.allorigins.win/raw?url=" + encodeURIComponent("https://api.viewbits.com/v1/uselessfacts?mode=today"))
+        fetch("https://api.viewbits.com/v1/uselessfacts?mode=today")
         .then(res => res.text())
         .then(raw => {
           console.log("Raw response:", raw)
@@ -132,7 +132,7 @@ function loadPreference() {
     else {
         console.log("You've got no settings.")
     }
-            /*chrome.storage.local version
+            /*chrome.storage version
         chrome.storage.local.get('settings', function(result) {
             if (result.settings) {
                 const SETTINGS = result.settings;
@@ -312,7 +312,7 @@ for (let i=0; i< LINKS.length; i++) {
 }
 checkForButton()
 
-/* for chrome.storage.local
+/* for chrome.storage
 for (let i = 0; i < LINKS.length; i++) {
     chrome.storage.local.get(`link-${i+1}`, function (result) {
         console.log(result.myKey); // ['hello', 'world', 'extension']
@@ -342,7 +342,7 @@ else {
     document.getElementById('name').innerHTML = NAME
 }
 
-/* chrome.storage.local
+/* chrome.storage
 chrome.storage.local.get('name', function(result) {
     const NAME = result.name;
     

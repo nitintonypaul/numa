@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadPreference() {
         //FUNCTIONS FOR ZenQuotes and Useless Facts
         function zenQ() {
-            //Allorigins here
-            fetch("https://api.allorigins.win/raw?url=https://zenquotes.io/api/today")
+            //Fetching without allorigins
+            fetch("https://zenquotes.io/api/today")
             .then(res => res.json())
             .then(data => {
               const quote = data[0].q
@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function uselessFact() {
-            //We still use allorigins
-            fetch("https://api.allorigins.win/raw?url=" + encodeURIComponent("https://api.viewbits.com/v1/uselessfacts?mode=today"))
+            //Fetching without allorigins
+            fetch("https://api.viewbits.com/v1/uselessfacts?mode=today")
             .then(res => res.text())
             .then(raw => {
               console.log("Raw response:", raw)
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
 
-        /*chrome.storage.local version
+        /*chrome.storage version
         chrome.storage.local.get('settings', function(result) {
             if (result.settings) {
                 const SETTINGS = result.settings;
@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (response) {
             localStorage.clear()
-            //chrome.storage.local
+            //chrome.storage
             //chrome.storage.local.clear(function() { console.log("Chrome storage data cleared.");});
             window.location.reload();
         }
