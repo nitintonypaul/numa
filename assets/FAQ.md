@@ -1,7 +1,7 @@
 ## ❓ Frequently Asked Questions (FAQ)
 
 ### 1. **How do I install NUMA?**
-   > You can install NUMA from the Chrome Web Store, or manually if you’re working in development mode.
+   Download the latest release [here](https://github.com/nitintonypaul/numa/releases). NUMA will be published in the Chrome Web store soon.
 
 ### 2. **What does NUMA do?**
    NUMA is a Chrome extension that transforms your new tab into a focus-driven start page. It helps you prioritize productivity throughout your day by minimizing distractions.
@@ -19,7 +19,7 @@
    You can choose between a daily quote or fun fact in the settings menu. You can also disable this feature entirely if you prefer.
 
 ### 7. **What do I do if NUMA isn’t working properly?**
-   > Since NUMA is still in development, you might encounter bugs. If something’s not working, please reach out to us at [...].
+   Since NUMA is still in development, you might encounter bugs. If something’s not working, please reach out to us at [Issues](https://github.com/nitintonypaul/numa/issues).
 
 ### 8. **How do I access NUMA’s settings?**
    To access the settings, simply click on the gear icon in the top-right corner of the extension.
@@ -31,7 +31,7 @@
    Right now, NUMA is only available for Chrome. Stay tuned for updates on potential cross-browser support.
 
 ### 11. **What should I do if my NUMA extension doesn’t show up?**
-   > Try restarting the extension by disabling and re-enabling it. If the problem persists, contact us at [...].
+   Try restarting the extension by disabling and re-enabling it. If the problem persists, reach us out at [Issues](https://github.com/nitintonypaul/numa/issues).
 
 ### 12. **Is NUMA free to use?**
    Yes, NUMA is completely free and open-source.
