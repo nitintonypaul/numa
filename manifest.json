@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "NUMA",
+  "description": "A focus oriented startpage with a few useful features.",
+  "version": "1.0.0",
+  "icons": {
+    "16": "assets/favicon-16.png",
+    "48": "assets/favicon-48.png",
+    "128": "assets/favicon-128.png"
+  },
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "permissions": [],
+  "host_permissions": [
+    "https://zenquotes.io/*",
+    "https://api.viewbits.com/*"
+  ]
+}
