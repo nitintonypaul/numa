@@ -83,7 +83,7 @@ function updateLink(e) {
     linkPrompt.style.display = 'flex'
     document.getElementById('cover').style.display = 'flex'
 
-    //Obtaining Previous Link elements from the localStorage/chrome.storage.local
+    //Obtaining Previous Link elements from the localStorage
     //For localStorage
     const tempLink = JSON.parse(localStorage.getItem(`link-${ID}`) || 'null')
     if (tempLink !== null) {
@@ -91,7 +91,7 @@ function updateLink(e) {
         title.value = tempLink[2]
     }
 
-    /* For chrome.storage.local
+    /* For chrome storage
     chrome.storage.local.get(`link-${ID}`, function (result) {
         const tempLink = result[`link-${ID}`]
         if (tempLink !== null) {
@@ -109,7 +109,7 @@ function updateLink(e) {
         //Removing from localStorage
         localStorage.removeItem(`link-${ID}`)
 
-        //chrome.storage.local
+        //chrome storage
         //chrome.storage.local.remove(`link-${ID}`);
 
         document.getElementById(`link-${ID}`).style.display = 'none'
@@ -182,7 +182,7 @@ linkSave.addEventListener('click', () => {
             }
         }
 
-        /*chrome.storage.local
+        /*chrome.storage
         chrome.storage.local.get(null, function(items) {
             const keyArr = [];
 
@@ -225,7 +225,7 @@ linkSave.addEventListener('click', () => {
         const linkElement = [domain, URLV, TITLE]
         localStorage.setItem(`link-${ID}`,JSON.stringify(linkElement))
     
-        //chrome.storage.local
+        //chrome.storage
         /*
         const Element = [domain, URLV, TITLE];
         chrome.storage.local.set({ [`link-${ID}`]: myStrings }, function () {
@@ -256,7 +256,7 @@ linkSave.addEventListener('click', () => {
 
         //Removing from localStorage
         localStorage.removeItem(`link-${ID}`)
-        //chrome.storage.local
+        //chrome.storage
         //chrome.storage.local.remove(`link-${ID}`);
 
         document.getElementById(`link-${ID}`).style.display = 'none'
@@ -312,7 +312,7 @@ linkSave.addEventListener('click', () => {
     const linkElement = [domain, URLV, TITLE]
     localStorage.setItem(`link-${ID}`,JSON.stringify(linkElement))
 
-    //chrome.storage.local
+    //chrome.storage
     /*
     const Element = [domain, URLV, TITLE];
     chrome.storage.local.set({ [`link-${ID}`]: myStrings }, function () {
@@ -413,7 +413,7 @@ function onboarding() {
         //Setting in localStorage
         localStorage.setItem('name',userName)
 
-        //chrome.storage.local
+        //chrome.storage
         /*chrome.storage.local.set({ name: userName }, function() {
             if (chrome.runtime.lastError) {
             console.error('Storage error:', chrome.runtime.lastError);
@@ -425,6 +425,24 @@ function onboarding() {
 
         //Updating in the web-page
         document.getElementById('name').innerHTML = userName
+
+        //LOADING QUOTE BY DEFAULT
+        fetch("https://zenquotes.io/api/today")
+        .then(res => res.json())
+        .then(data => {
+          const quote = data[0].q
+          const author = data[0].a
+
+          document.getElementById("quote").innerText = `“${quote}”`
+          document.getElementById("author").innerText = `— ${author}`
+        })
+
+        //Error
+        .catch(error => {
+          document.getElementById("quote").innerText = "Failed to load quote"
+          document.getElementById("author").innerText = ""
+          console.error("Error fetching quote:", error)
+        })
 
         //Wrapping Up
         document.getElementById('onboarding').style.opacity = 0
@@ -440,7 +458,7 @@ window.addEventListener('DOMContentLoaded', () => {
     //Obtaining settings
     const visited = localStorage.getItem('settings');
     
-    /*chrome.storage.local
+    /*chrome.storage
     chrome.storage.local.get('settings', function(result) {
         const visited = result.settings;
     });*/

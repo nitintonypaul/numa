@@ -45,6 +45,9 @@ saveButton.addEventListener('click', () => {
     // Save to Local Storage
     localStorage.setItem(newItem.id, val);
 
+    //Save to chrome storage
+    //chrome.storage.local.set({ [newItem.id]: val }, function() { console.log('Value is set.'); });
+
     const rn = Date.now();
     newItem.innerHTML = `
         <input type="checkbox" id="todo${rn}" name="todo${rn}">
@@ -77,7 +80,13 @@ listsContainer.addEventListener("change", function (e) {
 
             setTimeout(() => {
                 todoItem.remove();
+
+                //Removing from localStorage
                 localStorage.removeItem(todoItem.id);
+
+                //Removing from chrome storage
+                //chrome.storage.local.remove(todoItem.id);
+
                 updateState();
             }, 1500);
         }
