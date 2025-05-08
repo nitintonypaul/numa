@@ -98,12 +98,12 @@ a {
 
 .greeting {
     font-size: 2rem;
-    font-family: Funnel Display;
+    font-family: 'Funnel Display';
 }
 
 .name {
     font-size: 4rem;
-    font-family: Archivo Black;
+    font-family: 'Archivo Black';
 }
 
 /*Link Container*/
@@ -129,12 +129,12 @@ a {
 
 .link-url {
     font-size: 1.4rem;
-    font-family: Funnel Display;
+    font-family: 'Funnel Display';
 }
 
 .link-title {
     font-size: 1.4rem;
-    font-family: Funnel Display;
+    font-family: 'Funnel Display';
 }
 
 .link-input {
@@ -145,7 +145,7 @@ a {
     border-bottom: 2px solid var(--color);
     outline: none;
     color: var(--color);
-    font-family: Funnel Display;
+    font-family: 'Funnel Display';
     text-decoration: none;
     caret-color: var(--color);
     opacity: 50%;
@@ -214,7 +214,7 @@ a {
 .link-name {
     font-size: 1rem;
     padding: 10px 0px;
-    font-family: Funnel Display;
+    font-family: 'Funnel Display';
     cursor: pointer;
 }
 
@@ -283,13 +283,13 @@ a {
     justify-content: center;
     text-align: center;
     font-size: 1.2rem;
-    font-family: quintessential;
+    font-family: 'Quintessential';
 }
 
 .author {
     justify-content: center;
     text-align: center;
-    font-family: Funnel Display;
+    font-family: 'Funnel Display';
 }
 
 /*Clock and calendar Container*/
@@ -310,14 +310,14 @@ a {
     font-size: 7rem;
     user-select: none;
     -moz-user-select: none;
-    font-family: Archivo Black;
+    font-family: 'Archivo Black';
 }
 
 .calendar {
     display: flex;
     justify-content: right;
     text-align: center;
-    font-family: Funnel Display;
+    font-family: 'Funnel Display';
     font-size: 1.2rem;
     letter-spacing: 2px;
     user-select: none;
@@ -347,7 +347,7 @@ a {
 }
 
 .name-display {
-    font-family: Funnel Display;
+    font-family: 'Funnel Display';
     font-size: 1.4rem;
     user-select: none;
 }
@@ -360,7 +360,7 @@ a {
     border-bottom: 2px solid var(--color);
     outline: none;
     color: var(--color);
-    font-family: Funnel Display;
+    font-family: 'Funnel Display';
     text-decoration: none;
     caret-color: var(--color);
     opacity: 50%;
@@ -377,7 +377,7 @@ a {
 }
 
 .cancel {
-    font-family: Funnel Display;
+    font-family: 'Funnel Display';
     font-size: 1rem;
     padding: 6px 14px;
     border: none;
@@ -399,7 +399,7 @@ a {
     position: relative;
     margin-left: auto;
 
-    font-family: Funnel Display;
+    font-family: 'Funnel Display';
     font-size: 1rem;
     padding: 6px 14px;
     border: none;
@@ -417,7 +417,7 @@ a {
     position: relative;
     margin-left: 10px;
 
-    font-family: Funnel Display;
+    font-family: 'Funnel Display';
     font-size: 1rem;
     padding: 6px 14px;
     border: none;
@@ -459,7 +459,7 @@ a {
 
 .todo-name {
     width: 70%;
-    font-family: Funnel Display;
+    font-family: 'Funnel Display';
     font-size: 1rem;
     letter-spacing: 1px;
 }
@@ -485,7 +485,7 @@ a {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    font-family: Funnel Display;
+    font-family: 'Funnel Display';
     user-select: none;
     position: relative;
 }

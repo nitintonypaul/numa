@@ -6,3 +6,22 @@
     --color: #e0e0e0;
     --prompt-color: #111;
 }
+
+/**Font faces*/
+@font-face {
+    font-family: 'Archivo Black';
+    src: url('../assets/fonts/Archivo_Black/ArchivoBlack-Regular.ttf') format('truetype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Quintessential';
+    src: url('../assets/fonts/Quintessential/Quintessential-Regular.ttf') format('truetype');
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Funnel Display';
+    src: url('../assets/fonts/Funnel_Display/FunnelDisplay-VariableFont_wght.ttf') format('truetype');
+    font-style: normal;
+}

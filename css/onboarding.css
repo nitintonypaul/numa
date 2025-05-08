@@ -21,7 +21,7 @@
 }
 
 .onboarding-heading {
-    font-family: Archivo Black;
+    font-family: 'Archivo Black';
     font-size: 15rem;
     line-height: 200px;
     user-select: none;
@@ -31,7 +31,7 @@
 .onboarding-para {
     display: flex;
     text-align: center;
-    font-family: Funnel Display;
+    font-family: 'Funnel Display';
     font-size: 2rem;
     user-select: none;
     animation: pop-fade 1.5s;
@@ -42,7 +42,7 @@
     outline: none;
     border: 2px solid transparent;
     font-size: 1.5rem;
-    font-family: Funnel Display;
+    font-family: 'Funnel Display';
     border-radius: 40px;
     padding: 5px 20px;
     color: var(--color);
@@ -70,7 +70,7 @@
     border: 1px solid transparent;
     outline: none;
     color: var(--color);
-    font-family: Funnel Display;
+    font-family: 'Funnel Display';
     cursor: pointer;
     user-select: none;
     letter-spacing: 1px;
