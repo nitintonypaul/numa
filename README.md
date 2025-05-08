@@ -1,25 +1,33 @@
-# <img src="assets/favicon.ico" alt="NUMA Favicon" width="24" style="vertical-align:middle;margin-right:8px;"/> NUMA
+
+# <img src="assets/favicon.ico" alt="NUMA Favicon" width="24" style="vertical-align:middle;margin-right:8px;"/> NUMA  
 > _“Reorganize. Refocus. Reload.”_  
 
 ![Under Development](https://img.shields.io/badge/status-in%20development-yellow)
 
 ---
 
+## ⚠️ Disclaimer
+
+NUMA is currently in early access and is still under active development. While the extension is functional, some features may be incomplete or subject to change. By using NUMA, you acknowledge that the extension may not be fully polished and could contain bugs. Feedback is welcomed to help improve the product as it evolves!
+
+---
+
 ## 📋 Table of Contents
 
 1. [What Is NUMA?](#what-is-NUMA)  
-2. [Key Features](#key-features--expected)
-3. [Usage](#Usage--expected)
-4. [Design](#design)  
-5. [Next Steps](#next-steps)  
-6. [License](#license)
+2. [Key Features](#key-features--expected)  
+3. [Installation](#installation)  
+4. [Usage](#usage)
+5. [Tech Stack](#tech-stack)
+6. [Design](#design)  
+7. [Next Steps](#next-steps)  
+8. [License](#license)
 
 ---
 
 ## 🔍 What Is NUMA?
 
-NUMA is your soon-to-arrive browser sidekick, a sleek Chrome extension that transforms your default new-tab page into a distraction-eating, focus-boosting dashboard.
-Think of it as your browser wearing noise-canceling headphones: all you hear is focus.
+NUMA is your very own browser sidekick, a sleek Chrome extension that transforms your default new-tab page into a distraction-eating, focus-boosting dashboard. Think of it as your browser wearing noise-canceling headphones: all you hear is focus.
 
 Or, if you prefer acronyms: **Neutral Utility for Maintaining Attention.**
 
@@ -27,7 +35,7 @@ Or, if you prefer acronyms: **Neutral Utility for Maintaining Attention.**
 
 ---
 
-## ✨ Key Features (Expected)
+## ✨ Key Features
 
 - **Quick Links (Up to 4)**  
   Hand‑pick your daily essentials—limited slots to keep distractions at bay.
@@ -44,12 +52,50 @@ Or, if you prefer acronyms: **Neutral Utility for Maintaining Attention.**
 
 ---
 
-## 🚀 Usage (Expected)
+## 🛠️ Installation
 
-- Click the gear icon in the top-right to open **Settings** and configure.
-- Add up to four **Quick Links**.
-- Enter tasks in the **To-Do** section.
-- Open/Refresh a new tab to see your custom dashboard.
+### **For Development (Unpacked Extension)**
+
+1. **Download or Clone the Repository:**
+   - Download the extension files or clone the repo using:  
+     `git clone https://github.com/nitintonypaul/numa`
+
+2. **Open Chrome Extensions Page:**
+   - Go to `chrome://extensions/` in your Chrome browser.
+
+3. **Enable Developer Mode:**
+   - Toggle the **Developer Mode** switch on in the top right corner.
+
+4. **Load Unpacked Extension:**
+   - Click **Load unpacked** and select the folder where you have the extension files.
+
+5. **Enjoy:**
+   - After the extension is loaded, open a new tab to see the NUMA dashboard.
+
+### **For Chrome Web Store (Coming Soon):**
+- **NUMA** will soon be available for installation directly from the [Chrome Web Store](https://chrome.google.com/webstore).
+
+---
+
+## 🚀 Usage (How to Get Started)
+
+1. **Complete Onboarding**  
+   Begin by entering your name to personalize the experience. Once done, you'll be greeted with a sleek, clean home page.
+
+2. **Add To-Dos**  
+   Stay on top of your tasks by clicking the **"+" icon** near the To-Do section to easily add new items to your list.
+
+3. **Quick Links at Your Fingertips**  
+   Need quick access to your favorite sites? Simply click the **"+" icon** below the greeting message to add your essential quick links.
+
+4. **Get Inspired**  
+   At the bottom of your page, enjoy a **motivational quote** to keep your day inspired and focused.
+
+5. **Access Settings & More**  
+   For full customization, click the **Settings icon** in the top-right corner. From here, you can tweak settings and explore additional features.
+
+Have more questions? Visit [FAQ](https://github.com/nitintonypaul/numa/blob/main/assets/FAQ.md)
+
 
 ---
 
@@ -72,13 +118,14 @@ Or, if you prefer acronyms: **Neutral Utility for Maintaining Attention.**
 ---
 
 ## 📈 Next Steps
- - Turn prototype into fully working MVP
- - Official Chrome Web Store release
 
- ---
- 
+- Official Chrome Web Store release
+- Add more customization features for users
+- Refine usage experience
+- Extend support for other browsers
+
+---
+
 ## 📜 License
 
 Distributed under the MIT License. See LICENSE for details.
-
----
