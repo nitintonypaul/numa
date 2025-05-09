@@ -74,6 +74,9 @@ Or, if you prefer acronyms: **Neutral Utility for Maintaining Attention.**
 6. **Enjoy NUMA**  
    Once loaded, open a new tab to experience your minimalistic dashboard in action.
 
+### 🛒 From Gumroad
+NUMA is also available on [Gumroad](https://nitintonypaul.gumroad.com/l/numa) as a free or donation-supported download. If you’d like to support development, you can choose to pay what you want — or download it for free.
+
 ### 🛒 From Chrome Web Store (Coming Soon)
 
 Stay tuned! The official Web Store release is on the roadmap.
