@@ -132,3 +132,27 @@ Have more questions? Visit [FAQ](https://github.com/nitintonypaul/numa/blob/main
 ## 📜 License
 
 Distributed under the MIT License. See LICENSE for details.
+
+---
+
+## 🤝 Contributions
+
+Contributions are what make open-source projects like NUMA thrive. If you want to help improve NUMA or have a great idea, you're welcome to contribute! Whether it's bug fixes, new features, or documentation improvements, your help is appreciated. Here's how you can contribute:
+
+1. **Fork the Repository**  
+   Clone the repository to your local machine and create a new branch for your feature or fix.
+
+2. **Make Changes**  
+   Work on your changes locally. Feel free to add features or resolve issues that you think will improve the extension.
+
+3. **Submit a Pull Request**  
+   Once you’re done, submit a pull request detailing the changes you made. If your contribution resolves an issue, link to it in your PR description.
+
+4. **Review Process**  
+   All contributions will be reviewed, and once approved, they will be merged into the main branch.
+
+> **Note**: Please follow the [Code of Conduct](https://github.com/nitintonypaul/numa/blob/main/assets/code-of-conduct.md) and ensure that your code adheres to the project's coding standards.
+
+---
+
+
