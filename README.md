@@ -154,7 +154,7 @@ Contributions are what make open-source projects like NUMA thrive. If you want t
 4. **Review Process**  
    All contributions will be reviewed, and once approved, they will be merged into the main branch.
 
-> **Note**: Please follow the [Code of Conduct](https://github.com/nitintonypaul/numa/blob/main/assets/code-of-conduct.md) and ensure that your code adheres to the project's coding standards.
+> **Note**: Please follow the [Code of Conduct](https://github.com/nitintonypaul/numa/blob/main/CODE_OF_CONDUCT.md) and ensure that your code adheres to the project's coding standards.
 
 ---
 
