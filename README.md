@@ -100,7 +100,7 @@ Stay tuned! The official Web Store release is on the roadmap.
 5. **Access Settings & More**  
    For full customization, click the **Settings icon** in the top-right corner. From here, you can tweak settings and explore additional features.
 
-Have more questions? Visit [FAQ](https://github.com/nitintonypaul/numa/blob/main/assets/FAQ.md)
+Have more questions? Visit [FAQ](https://github.com/nitintonypaul/numa/blob/main/FAQ.md)
 
 
 ---
