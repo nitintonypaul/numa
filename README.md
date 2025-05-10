@@ -31,8 +31,6 @@ NUMA is your very own browser sidekick, a sleek Chrome extension that transforms
 
 Or, if you prefer acronyms: **Neutral Utility for Maintaining Attention.**
 
-> **Still in development.** Prototype pending – code is alive, but not quite breathing yet.
-
 ---
 
 ## ✨ Key Features
