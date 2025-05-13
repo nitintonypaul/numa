@@ -165,69 +165,6 @@ document.addEventListener('DOMContentLoaded', () => {
         else {
             console.log("You've got no settings.")
         }
-
-
-        /*chrome.storage version
-        chrome.storage.local.get('settings', function(result) {
-            if (result.settings) {
-                const SETTINGS = result.settings;
-
-                for (const [key, value] of Object.entries(SETTINGS)) {
-
-                switch(key) {
-
-                    // Light Mode
-                    case 'light-mode-toggle':
-                        if (!value) {
-                            document.documentElement.style.setProperty('--bg-color', '#1f1f1f')
-                            document.documentElement.style.setProperty('--bg-gradient', '#000')
-                            document.documentElement.style.setProperty('--color', '#e0e0e0')
-                            document.documentElement.style.setProperty('--prompt-color', '#111')
-                        } else {
-                            document.documentElement.style.setProperty('--bg-color', '#E0E0E0')
-                            document.documentElement.style.setProperty('--bg-gradient', '#FFF')
-                            document.documentElement.style.setProperty('--color', '#1F1F1F')
-                            document.documentElement.style.setProperty('--prompt-color', '#eeeeee')
-                        }
-                        break
-
-                    // Monochrome icons
-                    case 'monochrome-toggle':
-                        document.getElementById('link-container').style.filter = value ? 'grayscale(100%)' : 'grayscale(0%)'
-                        break
-
-                    // Hiding Clock
-                    case 'hide-clock-toggle':
-                        document.getElementById('clock-calendar-container').style.display = value ? 'none' : 'flex'
-                        break
-
-                    // TODO toggle
-                    case 'toggle-todo-toggle':
-                        document.getElementById('todo-container').style.display = value ? 'none' : 'block'
-                        break
-
-                    // Change Quote to Fun Fact
-                    case 'quote-switch-toggle':
-                        value ? uselessFact() : zenQ()
-                        break
-
-                    // Greetings Toggle
-                    case 'greetings-toggle-toggle':
-                        document.getElementById('greeting-container').style.display = value ? 'none' : 'flex'
-                        break
-
-                    // Focus Mode
-                    case 'focus-mode-toggle':
-                        document.getElementById('quote-container').style.display = value ? 'none' : 'flex'
-                        break
-                    }
-                }
-            } else {
-                console.log("You've got no settings.")
-            }
-        });
-
-        */
     }
 
     //Opening Settings container
@@ -264,38 +201,8 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log("You've got no settings.")
         }
 
-        //CHROME STORAGE FOR LOADING SETTINGS
-        /*
-        // LOADING SETTINGS
-        chrome.storage.local.get('settings', function(result) {
-
-            // Checking for errors
-            if (result.settings) {
-                const SETTINGS = JSON.parse(result.settings);
-
-                for (const [key, value] of Object.entries(SETTINGS)) {
-                    const checkbox = document.getElementById(key);
-                    if (checkbox) {
-                        checkbox.checked = value;
-                    }
-                }
-            } 
-            else {
-                console.log("You've got no settings.");
-            }
-        });
-
-        */
-
         //loading name
         document.getElementById('change-name-input').value = localStorage.getItem('name')
-
-        //Chrome storage
-        /*
-        chrome.storage.local.get('name', function(result) {
-            document.getElementById('change-name-input').value = result.name || '';
-        });
-        */
 
         //CANCELLING CASE
         document.getElementById('cancel-settings').addEventListener('click',() => {
@@ -328,10 +235,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             //Saving to localStorage
             localStorage.setItem('settings', JSON.stringify(settingsOBJ));
-            
-
-            //Saving to chrome storage
-            //chrome.storage.local.set({ settings: settingsOBJ });
 
             //Calling the big function
             loadPreference()
@@ -348,8 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (response) {
             localStorage.clear()
-            //chrome.storage
-            //chrome.storage.local.clear(function() { console.log("Chrome storage data cleared.");});
+
             window.location.reload();
         }
     })

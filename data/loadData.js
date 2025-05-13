@@ -1,4 +1,4 @@
-//File to load all data in localStorage/chrome.storage
+//File to load all data in localStorage
 
 //LOADING PREFERENCE
 function loadPreference() {
@@ -161,67 +161,6 @@ function loadPreference() {
     else {
         console.log("You've got no settings.")
     }
-            /*chrome.storage version
-        chrome.storage.local.get('settings', function(result) {
-            if (result.settings) {
-                const SETTINGS = result.settings;
-
-                for (const [key, value] of Object.entries(SETTINGS)) {
-
-                switch(key) {
-
-                    // Light Mode
-                    case 'light-mode-toggle':
-                        if (!value) {
-                            document.documentElement.style.setProperty('--bg-color', '#1f1f1f')
-                            document.documentElement.style.setProperty('--bg-gradient', '#000')
-                            document.documentElement.style.setProperty('--color', '#e0e0e0')
-                            document.documentElement.style.setProperty('--prompt-color', '#111')
-                        } else {
-                            document.documentElement.style.setProperty('--bg-color', '#E0E0E0')
-                            document.documentElement.style.setProperty('--bg-gradient', '#FFF')
-                            document.documentElement.style.setProperty('--color', '#1F1F1F')
-                            document.documentElement.style.setProperty('--prompt-color', '#eeeeee')
-                        }
-                        break
-
-                    // Monochrome icons
-                    case 'monochrome-toggle':
-                        document.getElementById('link-container').style.filter = value ? 'grayscale(100%)' : 'grayscale(0%)'
-                        break
-
-                    // Hiding Clock
-                    case 'hide-clock-toggle':
-                        document.getElementById('clock-calendar-container').style.display = value ? 'none' : 'flex'
-                        break
-
-                    // TODO toggle
-                    case 'toggle-todo-toggle':
-                        document.getElementById('todo-container').style.display = value ? 'none' : 'block'
-                        break
-
-                    // Change Quote to Fun Fact
-                    case 'quote-switch-toggle':
-                        value ? uselessFact() : zenQ()
-                        break
-
-                    // Greetings Toggle
-                    case 'greetings-toggle-toggle':
-                        document.getElementById('greeting-container').style.display = value ? 'none' : 'flex'
-                        break
-
-                    // Focus Mode
-                    case 'focus-mode-toggle':
-                        document.getElementById('quote-container').style.display = value ? 'none' : 'flex'
-                        break
-                    }
-                }
-            } else {
-                console.log("You've got no settings.")
-            }
-        });
-
-        */
 }
 
 loadPreference()
@@ -270,31 +209,6 @@ for (let i = 0; i < localStorage.length; i++) {
     }
 }
 
-/*For Chrome Storage (TO DO LIST)
-chrome.storage.local.get(null, function(items) {
-  for (const [key, value] of Object.entries(items)) {
-
-    if (key.includes('todo)) {
-        //Loading Items
-        const loadedItem = document.createElement("div")
-        loadedItem.classList.add("list")
-        loadedItem.id = `${key}`
-
-        //Random ID generator
-        var rn = Date.now()
-
-        //Defining List
-        loadedItem.innerHTML = `
-        <input type="checkbox" id="todo${rn}" name="todo${rn}">
-        <label for="todo${rn}">${value}</label><br>
-        `
-        //Appending 
-        list.appendChild(loadedItem)
-    }
-  }
-});
-*/
-
 updateState()
 
 
@@ -341,27 +255,6 @@ for (let i=0; i< LINKS.length; i++) {
 }
 checkForButton()
 
-/* for chrome.storage
-for (let i = 0; i < LINKS.length; i++) {
-    chrome.storage.local.get(`link-${i+1}`, function (result) {
-        console.log(result.myKey); // ['hello', 'world', 'extension']
-        var LINK = result[`link-${i+1}`]
-
-        if (LINK === null) {
-            //document.getElementById(`link-${i+1}`).style.display = 'none'
-            return true
-        }
-        const DOMAIN = LINK[0]
-        const urlv = LINK[1]
-        const ttl = LINK[2]
-
-        document.getElementById(`link-image-div-${i+1}`).innerHTML = `<img class="url-image" src="https://icons.duckduckgo.com/ip3/${DOMAIN}.ico">`
-        document.getElementById(`link-name-${i+1}`).innerHTML = ttl
-        document.getElementById(`link-${i+1}`).href = urlv
-    });
-}
-*/
-
 //LOADING NAME data
 const NAME = localStorage.getItem('name')
 if (NAME === null) {
@@ -370,15 +263,3 @@ if (NAME === null) {
 else {
     document.getElementById('name').innerHTML = NAME
 }
-
-/* chrome.storage
-chrome.storage.local.get('name', function(result) {
-    const NAME = result.name;
-    
-    if (NAME === undefined || NAME === null) {
-        console.log('onboarding');
-    } else {
-        document.getElementById('name').innerHTML = NAME;
-    }
-});
-*/
