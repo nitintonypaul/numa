@@ -113,7 +113,6 @@ Have more questions? Visit [FAQ](https://github.com/nitintonypaul/numa/blob/main
 
 ## 📸 Design
 
-> _“Design is never finished—only paused.”_
 
 <div align="center">
   <img src="assets/NUMA-preview.png" alt="NUMA preview" />
