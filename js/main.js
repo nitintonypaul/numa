@@ -91,15 +91,6 @@ function updateLink(e) {
         title.value = tempLink[2]
     }
 
-    /* For chrome storage
-    chrome.storage.local.get(`link-${ID}`, function (result) {
-        const tempLink = result[`link-${ID}`]
-        if (tempLink !== null) {
-            url.value = tempLink[1]
-            title.value = tempLink[2]
-        }
-    });*/
-
     //EVENT LISTENER FOR DELETE LINK button
     document.getElementById('link-delete').addEventListener('click',() => {
         //Resetting Values
@@ -109,8 +100,6 @@ function updateLink(e) {
         //Removing from localStorage
         localStorage.removeItem(`link-${ID}`)
 
-        //chrome storage
-        //chrome.storage.local.remove(`link-${ID}`);
 
         document.getElementById(`link-${ID}`).style.display = 'none'
 
@@ -120,7 +109,7 @@ function updateLink(e) {
         checkForButton()
         ID = null
         return true  
-    })
+    }, {once: true})
 }
 
 //Cancelling Process
@@ -182,17 +171,6 @@ linkSave.addEventListener('click', () => {
             }
         }
 
-        /*chrome.storage
-        chrome.storage.local.get(null, function(items) {
-            const keyArr = [];
-
-            for (let KEY in items) {
-                if (KEY.includes('link')) {
-                    keyArr.push(KEY);
-            }
-        }
-        });*/
-
         //So we're doing a couple operations here, 
         //1. is changing the array we have of the format ["link-1","link-3"]... to ["1","3"] or the equivalent using map()
         //2. is comparing with the reference array and extracting the array which is missing in the reference array.. i.e the available divs for our links
@@ -225,13 +203,6 @@ linkSave.addEventListener('click', () => {
         const linkElement = [domain, URLV, TITLE]
         localStorage.setItem(`link-${ID}`,JSON.stringify(linkElement))
     
-        //chrome.storage
-        /*
-        const Element = [domain, URLV, TITLE];
-        chrome.storage.local.set({ [`link-${ID}`]: myStrings }, function () {
-          console.log('Link Saved.');
-        });*/
-    
         //Wrapping up with usual procedure
         document.getElementById('url-input').value = ""
         document.getElementById('title-input').value = ""
@@ -256,8 +227,6 @@ linkSave.addEventListener('click', () => {
 
         //Removing from localStorage
         localStorage.removeItem(`link-${ID}`)
-        //chrome.storage
-        //chrome.storage.local.remove(`link-${ID}`);
 
         document.getElementById(`link-${ID}`).style.display = 'none'
 
@@ -312,19 +281,15 @@ linkSave.addEventListener('click', () => {
     const linkElement = [domain, URLV, TITLE]
     localStorage.setItem(`link-${ID}`,JSON.stringify(linkElement))
 
-    //chrome.storage
-    /*
-    const Element = [domain, URLV, TITLE];
-    chrome.storage.local.set({ [`link-${ID}`]: myStrings }, function () {
-      console.log('Link Saved.');
-    });*/
 
     //Wrapping up with usual procedure
     document.getElementById('url-input').value = ""
     document.getElementById('title-input').value = ""
     checkForButton()
+
     linkPrompt.style.display = 'none'
     document.getElementById('cover').style.display = 'none'
+
     //Setting the delete link button to be visible again
     document.getElementById('link-delete').style.display = 'block'
     document.getElementById('link-save').style.marginLeft = '10px'
@@ -407,21 +372,8 @@ function onboarding() {
         //Saving to localStorage
         localStorage.setItem('settings', JSON.stringify(settingsObj));
 
-        //Saving to chrome storage
-        //chrome.storage.local.set({ settings: settingsObj });
-
         //Setting in localStorage
         localStorage.setItem('name',userName)
-
-        //chrome.storage
-        /*chrome.storage.local.set({ name: userName }, function() {
-            if (chrome.runtime.lastError) {
-            console.error('Storage error:', chrome.runtime.lastError);
-            } 
-            else {
-                console.log('Name successfully saved!');
-             }
-        }); */
 
         //Updating in the web-page
         document.getElementById('name').innerHTML = userName
@@ -454,7 +406,7 @@ function onboarding() {
         setTimeout(() => {
             document.getElementById('onboarding').style.display = 'none';
         }, 1000);
-    })
+    }, {once: true})
 }
 
 //Adding an event listener after DOM is loaded as I experiened funny issues
@@ -462,11 +414,6 @@ window.addEventListener('DOMContentLoaded', () => {
     
     //Obtaining settings
     const visited = localStorage.getItem('settings');
-    
-    /*chrome.storage
-    chrome.storage.local.get('settings', function(result) {
-        const visited = result.settings;
-    });*/
 
     //Checking if the user has visited using settings
     if (visited === null) {

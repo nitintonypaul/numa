@@ -45,8 +45,6 @@ saveButton.addEventListener('click', () => {
     // Save to Local Storage
     localStorage.setItem(newItem.id, val);
 
-    //Save to chrome storage
-    //chrome.storage.local.set({ [newItem.id]: val }, function() { console.log('Value is set.'); });
 
     const rn = Date.now();
     newItem.innerHTML = `
@@ -83,9 +81,6 @@ listsContainer.addEventListener("change", function (e) {
 
                 //Removing from localStorage
                 localStorage.removeItem(todoItem.id);
-
-                //Removing from chrome storage
-                //chrome.storage.local.remove(todoItem.id);
 
                 updateState();
             }, 1500);
