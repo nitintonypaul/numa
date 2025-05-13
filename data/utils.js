@@ -1,259 +1,172 @@
-
 document.addEventListener('DOMContentLoaded', () => {
-//THE ENTIRE SETTINGS SCRIPT
+    // Cache DOM elements
+    const settingsButton = document.getElementById('settings-button');
+    const settingsContainer = document.getElementById('settings-container');
+    const cover = document.getElementById('cover');
+    const cancelSettingsBtn = document.getElementById('cancel-settings');
+    const saveSettingsBtn = document.getElementById('save-settings');
+    const clearDataBtn = document.getElementById('clear-data-button');
+    const changeNameInput = document.getElementById('change-name-input');
+    const nameDisplay = document.getElementById('name');
+    const linkContainer = document.getElementById('link-container');
+    const clockCalendarContainer = document.getElementById('clock-calendar-container');
+    const todoContainer = document.getElementById('todo-container');
+    const quoteContainer = document.getElementById('quote-container');
+    const quoteElement = document.getElementById('quote');
+    const authorElement = document.getElementById('author');
 
-    //LOADING USER PREFERENCE
-    //This is a big one, sit tight
-    function loadPreference() {
-        //FUNCTIONS FOR ZenQuotes and Useless Facts
-        function zenQ() {
-            //Fetching without allorigins
-            fetch("https://zenquotes.io/api/today")
+    // Fetch and display a quote
+    function zenQ() {
+        fetch("https://zenquotes.io/api/today")
             .then(res => res.json())
             .then(data => {
-                let quote = data[0].q
-                let author = data[0].a
-                
-                //Checking if the response obtained is failed response
+                let quote = data[0].q;
+                let author = data[0].a;
                 if (author.includes('zenquotes')) {
-                    quote = localStorage.getItem('quote')
-                    author = localStorage.getItem('author')
+                    quote = localStorage.getItem('quote');
+                    author = localStorage.getItem('author');
+                } else {
+                    localStorage.setItem('quote', quote);
+                    localStorage.setItem('author', author);
                 }
-                else {
-                    localStorage.setItem('quote', quote)
-                    localStorage.setItem('author', author)
-                }
-
-                //Adding to webpage
-                document.getElementById("quote").innerText = `“${quote}”`
-                document.getElementById("author").innerText = `— ${author}`
-            })
-
-            //Error
-            .catch(error => {
-                document.getElementById("quote").innerText = `“The ones who are crazy enough to think they can change the world are the ones who do.”`
-                document.getElementById("author").innerText = `— Steve Jobs`
-                console.error("Error fetching quote: ", error)
-            })
-        }
-
-        function uselessFact() {
-            //Fetching without allorigins
-            fetch("https://api.viewbits.com/v1/uselessfacts?mode=today")
-            .then(res => res.text())
-            .then(raw => {
-
-                //Parsing raw data
-                const data = JSON.parse(raw)
-
-                //Displaying data in website
-                document.getElementById("author").innerText = data.text;
-                document.getElementById("quote").innerText = ""
-
-                //Storing fact in localStorage
-                localStorage.setItem('fact', data.text)
+                quoteElement.innerText = `“${quote}”`;
+                authorElement.innerText = `— ${author}`;
             })
             .catch(error => {
-                
-                //Checking if 'fact' exists in localStorage. If it does, it is loaded, temporarily
-                if (localStorage.getItem('fact') !== null) {
-                    document.getElementById("author").innerText = `${localStorage.getItem('fact')}`;
-                    document.getElementById("quote").innerText = ""
-                }
-                else {
-
-                    //Else a fallback is shown
-                    document.getElementById("author").innerText = "Bananas are berries, but strawberries aren't.";
-                    document.getElementById("quote").innerText = ""
-                }
-
-                //Error message is sent anyway
-                console.error("Error fetching funny fact:", error);
+                quoteElement.innerText = `“The ones who are crazy enough to think they can change the world are the ones who do.”`;
+                authorElement.innerText = `— Steve Jobs`;
+                console.error("Error fetching quote:", error);
             });
-        }
+    }
 
-    
-        const stringSettings = localStorage.getItem('settings')
-
-        //checking for errors
-        if (stringSettings) {
-            const SETTINGS = JSON.parse(stringSettings);
-
-            for (const [key, value] of Object.entries(SETTINGS)) {
-
-                switch(key) {
-
-                    //Light Mode
-                    case 'light-mode-toggle':
-                        if (!value) {
-                            document.documentElement.style.setProperty('--bg-color', '#1f1f1f')
-                            document.documentElement.style.setProperty('--bg-gradient', '#000')
-                            document.documentElement.style.setProperty('--color', '#e0e0e0')
-                            document.documentElement.style.setProperty('--prompt-color', '#111')
-                        }
-                        else {
-                            document.documentElement.style.setProperty('--bg-color', '#E0E0E0')
-                            document.documentElement.style.setProperty('--bg-gradient', '#FFF')
-                            document.documentElement.style.setProperty('--color', '#1F1F1F')
-                            document.documentElement.style.setProperty('--prompt-color', '#eeeeee')
-                        }
-                        break
-                    
-                    //Monochrome icons
-                    case 'monochrome-toggle':
-                        if (!value) {
-                            document.getElementById('link-container').style.filter = 'grayscale(0%)'
-                        }
-                        else {
-                            document.getElementById('link-container').style.filter = 'grayscale(100%)'
-                        }
-                        break
-                    
-                    //Hiding Clock
-                    case 'hide-clock-toggle':
-                        if (!value) {
-                            document.getElementById('clock-calendar-container').style.display = 'flex'
-                        }
-                        else {
-                            document.getElementById('clock-calendar-container').style.display = 'none'
-                        }
-                        break
-                    
-                    //TODO toggle
-                    case 'toggle-todo-toggle':
-                        if (!value) {
-                            document.getElementById('todo-container').style.display = 'block'
-                        }
-                        else {
-                            document.getElementById('todo-container').style.display = 'none'
-                        }
-                        break
-
-                    //Change Quote to Fun Fact
-                    case 'quote-switch-toggle':
-                        if (!value) {
-                            zenQ()
-                        }
-                        else {
-                            uselessFact()
-                        }
-                        break
-                    
-                    //Greetings Toggle
-                    case 'greetings-toggle-toggle':
-                        if (!value) {
-                            document.getElementById('greeting-container').style.display = 'flex'
-                        }
-                        else {
-                            document.getElementById('greeting-container').style.display = 'none'
-                        }
-                        break
-                    
-                    //Focus Mode
-                    case 'focus-mode-toggle':
-                        if (!value) {
-                            document.getElementById('quote-container').style.display = 'flex'
-                        }
-                        else {
-                            document.getElementById('quote-container').style.display = 'none'
-                        }
-                        break
-                }
-
+    // Fetch and display a useless fact
+    function uselessFact() {
+        //Fetching without allorigins
+        fetch("https://api.viewbits.com/v1/uselessfacts?mode=today")
+        .then(res => res.text())
+        .then(raw => {
+            //Parsing raw data
+            const data = JSON.parse(raw)
+            //Displaying data in website
+            document.getElementById("author").innerText = data.text;
+            document.getElementById("quote").innerText = ""
+            //Storing fact in localStorage
+            localStorage.setItem('fact', data.text)
+        })
+        .catch(error => {
+            
+            //Checking if 'fact' exists in localStorage. If it does, it is loaded, temporarily
+            if (localStorage.getItem('fact') !== null) {
+                document.getElementById("author").innerText = `${localStorage.getItem('fact')}`;
+                document.getElementById("quote").innerText = ""
             }
+            else {
+                //Else a fallback is shown
+                document.getElementById("author").innerText = "Bananas are berries, but strawberries aren't.";
+                document.getElementById("quote").innerText = ""
+            }
+            //Error message is sent anyway
+            console.error("Error fetching funny fact:", error);
+        });
+    }
+
+    // Apply saved preferences
+    function loadPreference() {
+        const stringSettings = localStorage.getItem('settings');
+        if (!stringSettings) {
+            console.log("You've got no settings.");
+            return;
         }
-        else {
-            console.log("You've got no settings.")
+        const SETTINGS = JSON.parse(stringSettings);
+        Object.entries(SETTINGS).forEach(([key, value]) => {
+            switch (key) {
+                case 'light-mode-toggle':
+                    document.documentElement.style.setProperty('--bg-color', value ? '#E0E0E0' : '#1f1f1f');
+                    document.documentElement.style.setProperty('--bg-gradient', value ? '#FFF' : '#000');
+                    document.documentElement.style.setProperty('--color', value ? '#1F1F1F' : '#e0e0e0');
+                    document.documentElement.style.setProperty('--prompt-color', value ? '#eeeeee' : '#111');
+                    break;
+                case 'monochrome-toggle':
+                    linkContainer.style.filter = value ? 'grayscale(100%)' : 'grayscale(0%)';
+                    break;
+                case 'hide-clock-toggle':
+                    clockCalendarContainer.style.display = value ? 'none' : 'flex';
+                    break;
+                case 'toggle-todo-toggle':
+                    todoContainer.style.display = value ? 'none' : 'block';
+                    break;
+                case 'quote-switch-toggle':
+                    value ? uselessFact() : zenQ();
+                    break;
+                case 'greetings-toggle-toggle':
+                    document.getElementById('greeting-container').style.display = value ? 'none' : 'flex';
+                    break;
+                case 'focus-mode-toggle':
+                    quoteContainer.style.display = value ? 'none' : 'flex';
+                    break;
+            }
+        });
+    }
+
+    // Open settings panel
+    function openSettings() {
+        settingsContainer.style.display = 'flex';
+        cover.style.display = 'flex';
+        const settingsString = localStorage.getItem('settings');
+        if (settingsString) {
+            const SETTINGS = JSON.parse(settingsString);
+            Object.entries(SETTINGS).forEach(([key, value]) => {
+                const checkbox = document.getElementById(key);
+                if (checkbox) checkbox.checked = value;
+            });
+        } else {
+            console.log("You've got no settings.");
+        }
+        changeNameInput.value = localStorage.getItem('name') || '';
+    }
+
+    // Close settings panel
+    function cancelSettings() {
+        settingsContainer.style.display = 'none';
+        cover.style.display = 'none';
+    }
+
+    // Save preferences and apply
+    function saveSettings() {
+        const nameVal = changeNameInput.value.trim();
+        if (nameVal) {
+            localStorage.setItem('name', nameVal);
+            nameDisplay.innerHTML = nameVal;
+        }
+        const Settings = [
+            ['light-mode-toggle', document.getElementById('light-mode-toggle').checked],
+            ['monochrome-toggle', document.getElementById('monochrome-toggle').checked],
+            ['hide-clock-toggle', document.getElementById('hide-clock-toggle').checked],
+            ['toggle-todo-toggle', document.getElementById('toggle-todo-toggle').checked],
+            ['quote-switch-toggle', document.getElementById('quote-switch-toggle').checked],
+            ['greetings-toggle-toggle', document.getElementById('greetings-toggle-toggle').checked],
+            ['focus-mode-toggle', document.getElementById('focus-mode-toggle').checked]
+        ];
+        const settingsOBJ = Object.fromEntries(Settings);
+        localStorage.setItem('settings', JSON.stringify(settingsOBJ));
+        loadPreference();
+        cancelSettings();
+    }
+
+    // Clear all data
+    function clearData() {
+        if (confirm("Are you sure you want to reset all preferences and data? This action cannot be undone.")) {
+            localStorage.clear();
+            window.location.reload();
         }
     }
 
-    //Opening Settings container
-    document.getElementById('settings-button').addEventListener('click', () => {
+    // Event listeners
+    if (settingsButton) settingsButton.addEventListener('click', openSettings);
+    if (cancelSettingsBtn) cancelSettingsBtn.addEventListener('click', cancelSettings);
+    if (saveSettingsBtn) saveSettingsBtn.addEventListener('click', saveSettings);
+    if (clearDataBtn) clearDataBtn.addEventListener('click', clearData);
 
-        //POP-UPS
-        document.getElementById('settings-container').style.display = 'flex'
-        document.getElementById('cover').style.display = 'flex'
-
-        //LOADING SETTINGS
-        const settingsString = localStorage.getItem('settings')
-
-        //checking for errors
-        if (settingsString) {
-            const SETTINGS = JSON.parse(settingsString);
-
-            for (const [key, value] of Object.entries(SETTINGS)) {
-
-                //Settings are stored in the format
-                /*const settings = [
-                ['light-mode-toggle', false],
-                ['monochrome-toggle', false],
-                ['hide-clock-toggle', false],
-                ['toggle-todo-toggle', false],
-                ['quote-switch-toggle', false],
-                ['greetings-toggle-toggle', false],
-                ['focus-mode-toggle', false]
-                ];*/
-
-                document.getElementById(key).checked = value
-            }
-        }
-        else {
-            console.log("You've got no settings.")
-        }
-
-        //loading name
-        document.getElementById('change-name-input').value = localStorage.getItem('name')
-
-        //CANCELLING CASE
-        document.getElementById('cancel-settings').addEventListener('click',() => {
-            document.getElementById('settings-container').style.display = 'none'
-            document.getElementById('cover').style.display = 'none'
-        })
-
-        //SAVING CASE
-        document.getElementById('save-settings').addEventListener('click', () => {
-
-            //Setting name separately
-            if (document.getElementById('change-name-input').value.trim()) {
-                localStorage.setItem('name',document.getElementById('change-name-input').value)
-                document.getElementById('name').innerHTML = document.getElementById('change-name-input').value
-            }
-
-            //Declaring user preference settings
-            const Settings = [
-                ['light-mode-toggle', document.getElementById('light-mode-toggle').checked],
-                ['monochrome-toggle', document.getElementById('monochrome-toggle').checked],
-                ['hide-clock-toggle', document.getElementById('hide-clock-toggle').checked],
-                ['toggle-todo-toggle', document.getElementById('toggle-todo-toggle').checked],
-                ['quote-switch-toggle', document.getElementById('quote-switch-toggle').checked],
-                ['greetings-toggle-toggle', document.getElementById('greetings-toggle-toggle').checked],
-                ['focus-mode-toggle', document.getElementById('focus-mode-toggle').checked]
-                ];
-
-            //Converstion to object
-            const settingsOBJ = Object.fromEntries(Settings);
-
-            //Saving to localStorage
-            localStorage.setItem('settings', JSON.stringify(settingsOBJ));
-
-            //Calling the big function
-            loadPreference()
-
-            //Close POP-UPS
-            document.getElementById('settings-container').style.display = 'none'
-            document.getElementById('cover').style.display = 'none'
-        })
-    })
-
-    //CLEARING ALL DATA - NO SAVE CASE
-    document.getElementById('clear-data-button').addEventListener('click', () => {
-        const response = confirm("Are you sure you want to reset all preferences and data? This action cannot be undone.")
-
-        if (response) {
-            localStorage.clear()
-
-            window.location.reload();
-        }
-    })
-
+    // Initial load
+    loadPreference();
 });

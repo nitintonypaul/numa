@@ -91,15 +91,6 @@ function updateLink(e) {
         title.value = tempLink[2]
     }
 
-    /* For chrome storage
-    chrome.storage.local.get(`link-${ID}`, function (result) {
-        const tempLink = result[`link-${ID}`]
-        if (tempLink !== null) {
-            url.value = tempLink[1]
-            title.value = tempLink[2]
-        }
-    });*/
-
     //EVENT LISTENER FOR DELETE LINK button
     document.getElementById('link-delete').addEventListener('click',() => {
         //Resetting Values
@@ -109,8 +100,6 @@ function updateLink(e) {
         //Removing from localStorage
         localStorage.removeItem(`link-${ID}`)
 
-        //chrome storage
-        //chrome.storage.local.remove(`link-${ID}`);
 
         document.getElementById(`link-${ID}`).style.display = 'none'
 
@@ -120,7 +109,7 @@ function updateLink(e) {
         checkForButton()
         ID = null
         return true  
-    })
+    }, {once: true})
 }
 
 //Cancelling Process
@@ -238,8 +227,6 @@ linkSave.addEventListener('click', () => {
 
         //Removing from localStorage
         localStorage.removeItem(`link-${ID}`)
-        //chrome.storage
-        //chrome.storage.local.remove(`link-${ID}`);
 
         document.getElementById(`link-${ID}`).style.display = 'none'
 
@@ -419,7 +406,7 @@ function onboarding() {
         setTimeout(() => {
             document.getElementById('onboarding').style.display = 'none';
         }, 1000);
-    })
+    }, {once: true})
 }
 
 //Adding an event listener after DOM is loaded as I experiened funny issues
