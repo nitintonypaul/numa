@@ -1,13 +1,13 @@
-//Global ID variable since I was facing some issues
+//Global ID variable to control the flow
 let ID = null
 
-//Global constants
-//A few constants
+//Caching DOM elements for ease of use
 const linkPrompt = document.getElementById('link-prompt')
 const url = document.getElementById('url-input')
 const title = document.getElementById('title-input')
 
 //Clock & Calendar function
+//24 HOUR TOGGLE MODE INCOMING
 function update() {
 
     //Declaring date
@@ -26,7 +26,7 @@ function update() {
     month = months[month]
     day = days[day]
 
-    //constants
+    //Obtaining calendar and clock divs
     const calendar = document.getElementById("calendar")
     const clock = document.getElementById("clock")
 
@@ -48,11 +48,12 @@ function update() {
         greeting.innerHTML = "Good Evening,"
     }
     
-    //Conversion
+    //Conversion to 12 hour
+    //NOT NECESSARY IF 24 HOUR MODE IS ON - UPCOMING
     hours = hours % 12
     hours = hours ? hours : 12
 
-    //Updation
+    //Updating in the website
     clock.innerHTML = `${hours}:${minutes}`
     calendar.innerHTML = `${day}, ${month} ${date}`
 }
@@ -63,7 +64,7 @@ update()
 
 
 //LINK SYSTEM
-//Yes I had to do all this since for some DAMN reason querySelector decided not to work
+//Caching each link div
 const linkBtn1 = document.getElementById('1')
 const linkBtn2 = document.getElementById('2')
 const linkBtn3 = document.getElementById('3')
@@ -73,26 +74,27 @@ const linkBtn4 = document.getElementById('4')
 function updateLink(e) {
 
     //Preventing Bubbling
+    //Stops unwanted propogation upon clicking a child/parent element
     e.stopPropagation()
     e.preventDefault()
 
     //Declaring ID
     ID = e.currentTarget.id
 
-    //Usual procedure
+    //Displaying add/update link deck
     linkPrompt.style.display = 'flex'
     document.getElementById('cover').style.display = 'flex'
 
-    //Obtaining Previous Link elements from the localStorage
-    //For localStorage
+    //Obtaining Previous Link elements from localStorage
     const tempLink = JSON.parse(localStorage.getItem(`link-${ID}`) || 'null')
     if (tempLink !== null) {
         url.value = tempLink[1]
         title.value = tempLink[2]
     }
 
-    //EVENT LISTENER FOR DELETE LINK button
+    //Handling DELETE button
     document.getElementById('link-delete').addEventListener('click',() => {
+        
         //Resetting Values
         document.getElementById('url-input').value = ""
         document.getElementById('title-input').value = ""
@@ -100,19 +102,22 @@ function updateLink(e) {
         //Removing from localStorage
         localStorage.removeItem(`link-${ID}`)
 
-
+        //Removing link visually
         document.getElementById(`link-${ID}`).style.display = 'none'
 
         //Usual process of resetting prompts
         linkPrompt.style.display = 'none'
         document.getElementById('cover').style.display = 'none'
         checkForButton()
+
+        //Setting ID as NULL before exiting (ID is assumed to be NULL at every new instance)
         ID = null
         return true  
-    }, {once: true})
+
+    }, {once: true}) //Only uses event listener once, and self destructs after use
 }
 
-//Cancelling Process
+//Handling CANCEL button
 const linkCancel = document.getElementById('link-cancel')
 linkCancel.addEventListener('click', () => {
 
@@ -122,39 +127,41 @@ linkCancel.addEventListener('click', () => {
     linkPrompt.style.display = 'none'
     document.getElementById('cover').style.display = 'none'
 
-    //Setting the delete link button to be visible again
+    //Setting the DELETE button to be visible
     document.getElementById('link-delete').style.display = 'block'
     document.getElementById('link-save').style.marginLeft = '10px'
 
-    //ID to null
+    //Setting ID to null
     ID = null
 })
 
-//Event listener for empty link button
-//Removes the 'delete' button from the link prompt when click "Add new link" button
+//Handling ADD link button
+//Removes the DELETE button from the link prompt when ADD is clicked
 document.getElementById('empty-link-button').addEventListener('click', () => {
     
+    //Setting the display of DELETE button to none and a small position change
     document.getElementById('link-delete').style.display = 'none'
     document.getElementById('link-save').style.marginLeft = 'auto'
 })
 
-//   :(
+//Handling each LINK
 linkBtn1.addEventListener('click', updateLink)
 linkBtn2.addEventListener('click', updateLink)
 linkBtn3.addEventListener('click', updateLink)
 linkBtn4.addEventListener('click', updateLink)
 
 
-//Saving Process done
+//Handling SAVE buttone
 const linkSave = document.getElementById('link-save')
+
 linkSave.addEventListener('click', () => {
 
     //Constants
     const URLV = document.getElementById('url-input').value
     const TITLE = document.getElementById('title-input').value
 
-    //If the save button is clicked from emptyLink button and not the edit link button
-    //This is a tricky formula. I don't know how I came up with this myself
+    //If the save button is clicked from ADD link button and not the EDIT button
+    //This is a tricky technique. I don't know how I came up with this myself
     if (ID === null) { //Yep this is it. This is the star of the show
 
         //Initializing Key Array and a reference Array
@@ -194,6 +201,7 @@ linkSave.addEventListener('click', () => {
         }
 
         //Changing image, title and href
+        //FUTURE NITIN, PLEASE HAVE A LOOK AT THE FAVICON SYSTEM
         document.getElementById(`link-${ID}`).style.display = 'flex'
         document.getElementById(`link-image-div-${ID}`).innerHTML = `<img class="url-image" src="https://icons.duckduckgo.com/ip3/${domain}.ico">`
         document.getElementById(`link-name-${ID}`).innerHTML = TITLE
@@ -213,12 +221,13 @@ linkSave.addEventListener('click', () => {
         //Setting the delete link button to be visible again
         document.getElementById('link-delete').style.display = 'block'
         document.getElementById('link-save').style.marginLeft = '10px'
-
+        
+        //Setting ID to NULL before exiting'
         ID = null
         return true
     }
 
-    //If no URL and Title is given [Deleting Element]
+    //If no URL and Title are given then the element is delted
     if (URLV.trim() == "" && TITLE.trim() == "") {
 
         //Resetting Values
@@ -228,13 +237,17 @@ linkSave.addEventListener('click', () => {
         //Removing from localStorage
         localStorage.removeItem(`link-${ID}`)
 
+        //Removing item visually
         document.getElementById(`link-${ID}`).style.display = 'none'
 
         //Usual process of resetting prompts
         linkPrompt.style.display = 'none'
         document.getElementById('cover').style.display = 'none'
         checkForButton()
+
+        //Setting ID to NULL
         ID = null
+
         //Setting the delete link button to be visible again
         document.getElementById('link-delete').style.display = 'block'
         document.getElementById('link-save').style.marginLeft = '10px'
@@ -255,15 +268,16 @@ linkSave.addEventListener('click', () => {
         //Setting the delete link button to be visible again
         document.getElementById('link-delete').style.display = 'block'
         document.getElementById('link-save').style.marginLeft = '10px'
+
+        //Setting ID to null
         ID = null
         return true
     }
 
-    //Else case, and obviously cuz I was lazy
-    //Getting URL
+    //Obtaining URL
     let domain = ""
 
-    //try and catch done to ensure correct URL input
+    //try-catch to ensure correct URL input
     try {
         domain = new URL(URLV).hostname
     }
@@ -273,6 +287,7 @@ linkSave.addEventListener('click', () => {
     }
 
     //Changing image, title and href
+    //FAVICON SYSTEM, HAVE A LOOK AT THIS
     document.getElementById(`link-image-div-${ID}`).innerHTML = `<img class="url-image" src="https://icons.duckduckgo.com/ip3/${domain}.ico">`
     document.getElementById(`link-name-${ID}`).innerHTML = TITLE
     document.getElementById(`link-${ID}`).href = URLV
@@ -282,27 +297,34 @@ linkSave.addEventListener('click', () => {
     localStorage.setItem(`link-${ID}`,JSON.stringify(linkElement))
 
 
-    //Wrapping up with usual procedure
+    //Clearning inputs
     document.getElementById('url-input').value = ""
     document.getElementById('title-input').value = ""
+    
+    //Checking if the ADD link button needs to be displayed
     checkForButton()
 
+    //Setting display to none
     linkPrompt.style.display = 'none'
     document.getElementById('cover').style.display = 'none'
 
     //Setting the delete link button to be visible again
     document.getElementById('link-delete').style.display = 'block'
     document.getElementById('link-save').style.marginLeft = '10px'
+
+    //Setting ID to NULL
     ID = null
 })
 
 //Adding link & emptyLink button updates
-//checkForButton - a function to check if the emptyLink button is to be displayed or not
+//Function to check whether the ADD link button is to be displayed
 function checkForButton() {
 
     //Getting how many link elements are present
     const linkElements = document.querySelectorAll('.link-a')
     var count = 0
+
+    //Counting the number of elements present in the list with display set to flex
     for (let i = 0; i < linkElements.length; i++) {
         if (linkElements[i].style.display != 'none') {
             count++
@@ -321,7 +343,7 @@ function checkForButton() {
     }
 }
 
-//addLink Function 
+//Function to ADD link
 function addLink() {
 
     //Displaying prompt
@@ -329,7 +351,7 @@ function addLink() {
     document.getElementById('cover').style.display = 'flex'
 }
 
-
+//Event listener for ADD link
 document.getElementById('empty-link-container').addEventListener('click', addLink)
 
 
@@ -339,11 +361,11 @@ function onboarding() {
     //Displaying onboarding element
     document.getElementById('onboarding').style.display = 'flex'
 
-    //A few constants
+    //Caching elements
     const continueBtn = document.getElementById('onboarding-continue');
     const input = document.getElementById('onboarding-input');
 
-    //Event listener to disable button while input is ""
+    //Disable button while input.trim() is ""
     input.addEventListener('input', () => {
         continueBtn.disabled = !input.value.trim()
     });
@@ -356,6 +378,7 @@ function onboarding() {
         const userName = input.value
 
         //Setting Default Settings
+        //MODULAR, can be changed
         const settings = [
             ['light-mode-toggle', false],
             ['monochrome-toggle', false],
@@ -379,6 +402,7 @@ function onboarding() {
         document.getElementById('name').innerHTML = userName
 
         //LOADING QUOTE BY DEFAULT
+        //SMALL BUG PRESENT, FUTURE NITIN, PLEASE HAVE A LOOK
         fetch("https://zenquotes.io/api/today")
         .then(res => res.json())
         .then(data => {
@@ -394,33 +418,36 @@ function onboarding() {
             localStorage.setItem('author',author)
         })
 
-        //Error
+        //Displaying Fallback instead of an error
         .catch(error => {
             document.getElementById("quote").innerText = `“The ones who are crazy enough to think they can change the world are the ones who do.”`
             document.getElementById("author").innerText = `— Steve Jobs`
             console.error("Error fetching quote: ", error)
         })
 
-        //Wrapping Up
+        //Slowly fading out the onboarding element
         document.getElementById('onboarding').style.opacity = 0
         setTimeout(() => {
             document.getElementById('onboarding').style.display = 'none';
         }, 1000);
-    }, {once: true})
+
+    }, {once: true}) //Event listener is only added once
 }
 
-//Adding an event listener after DOM is loaded as I experiened funny issues
+//Checking whether onboarding is necessary
 window.addEventListener('DOMContentLoaded', () => {
     
     //Obtaining settings
     const visited = localStorage.getItem('settings');
 
     //Checking if the user has visited using settings
+    //If setttings is NULL they have not visited and vice versa
     if (visited === null) {
 
         //Calling the onboarding function
         onboarding()
     } 
+    //Displaying welcome message in the console
     else {
         console.log("Welcome back.")
     }
