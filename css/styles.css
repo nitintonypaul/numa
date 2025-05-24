@@ -13,7 +13,7 @@ body {
 
 ::-webkit-scrollbar {
     width: 5px;
-    background-color: var(--bg-gradient);
+    background-color: transparent; /*Set to control scrollbar overflow*/
     border-radius: 10px;
 }
 

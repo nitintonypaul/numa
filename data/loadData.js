@@ -1,8 +1,9 @@
-//File to load all data in localStorage
+//SCRIPT TO LOAD ALL DATA FROM LOCALSTORAGE
 
-//LOADING PREFERENCE
+//LOADING USER PREFERENCE
 function loadPreference() {
-    //FUNCTIONS FOR ZenQuotes and Useless Facts
+    
+    //Function to fetch quote
     function zenQ() {
         fetch("https://zenquotes.io/api/today")
         .then(res => res.json())
@@ -10,22 +11,23 @@ function loadPreference() {
             let quote = data[0].q
             let author = data[0].a
             
-            //Checking if the response obtained is failed response
+            //Checking if the quote is a API call message and obtaining quote from localStorageif it exists
             if (author.includes('zenquotes')) {
                 quote = localStorage.getItem('quote')
                 author = localStorage.getItem('author')
             }
+            //Else storing caching quote and author in localStorage
             else {
                 localStorage.setItem('quote', quote)
                 localStorage.setItem('author', author)
             }
 
-            //Changing the quote to website
+            //Changing the quote on the dashboard
             document.getElementById("quote").innerText = `“${quote}”`
             document.getElementById("author").innerText = `— ${author}`
         })
 
-        //Error
+        //Error fallback for quote
         .catch(error => {
             document.getElementById("quote").innerText = `“The ones who are crazy enough to think they can change the world are the ones who do.”`
             document.getElementById("author").innerText = `— Steve Jobs`
@@ -33,6 +35,7 @@ function loadPreference() {
         })
     }
 
+    //Function to fetch useless fact
     function uselessFact() {
         fetch("https://api.viewbits.com/v1/uselessfacts?mode=today")
         .then(res => res.text())
@@ -51,14 +54,14 @@ function loadPreference() {
         })
         .catch(error => {
 
-            //Checking if 'fact' exists in localStorage. If it does, it is loaded, temporarily
+            //Loading cached fact, if it exists
             if (localStorage.getItem('fact') !== null) {
                 document.getElementById("author").innerText = `${localStorage.getItem('fact')}`;
                 document.getElementById("quote").innerText = ""
             }
             else {
 
-                //Else a fallback is shown
+                //Else fallback shown
                 document.getElementById("author").innerText = "Bananas are berries, but strawberries aren't.";
                 document.getElementById("quote").innerText = ""
             }
@@ -68,15 +71,19 @@ function loadPreference() {
         });
     }
 
-    //CHROME STORAGE VARIANT BELOW THIS
+    //Obtaining settings from localStorage
     const stringSettings = localStorage.getItem('settings')
 
     //checking for errors
     if (stringSettings) {
+
+        //Obtaining settings object
         const SETTINGS = JSON.parse(stringSettings);
 
+        //Iterating through settings object for each key and value
         for (const [key, value] of Object.entries(SETTINGS)) {
 
+            //Switching key
             switch(key) {
 
                 //Light Mode
@@ -158,14 +165,17 @@ function loadPreference() {
 
         }
     }
+    //Logging "no settings"
     else {
         console.log("You've got no settings.")
     }
 }
 
+//Calling the loading function on start
 loadPreference()
 
-//TO DO LIST data
+//TO DO LIST DATA
+//Checking if the todo list is empty and displaying the required message
 function updateState() {
     const elements = document.querySelectorAll('.list')
     const emptyContainer = document.getElementById('empty-container')
@@ -190,7 +200,9 @@ for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i)
     const value = localStorage.getItem(key)
 
+    //Checking if it is a todo item
     if (key.includes('todo')) {
+        
         //Loading Items
         const loadedItem = document.createElement("div")
         loadedItem.classList.add("list")
@@ -209,11 +221,12 @@ for (let i = 0; i < localStorage.length; i++) {
     }
 }
 
+//Calling Function to check if the todo list is empty
 updateState()
 
 
-//LINK data
-//Same checkForButton function in main.js
+//LINKS DATA
+//Checking it the 'add new link' button should be shown
 function checkForButton () {
 
     //Getting how many link elements are present
@@ -236,8 +249,10 @@ function checkForButton () {
     }
 }
 
+//Obtaining LINKS array
 const LINKS = [JSON.parse(localStorage.getItem('link-1') || 'null'), JSON.parse(localStorage.getItem('link-2') || 'null'), JSON.parse(localStorage.getItem('link-3') || 'null'), JSON.parse(localStorage.getItem('link-4') || 'null')]
 
+//Iterating through to display links
 for (let i=0; i< LINKS.length; i++) {
     if (LINKS[i] === null) {
         document.getElementById(`link-${i+1}`).style.display = 'none'
@@ -253,13 +268,19 @@ for (let i=0; i< LINKS.length; i++) {
     document.getElementById(`link-${i+1}`).href = urlv
 
 }
+
+//Calling checkForButton()
 checkForButton()
 
-//LOADING NAME data
+//LOADING NAME DATA
+//Obtaining name from localStorage
 const NAME = localStorage.getItem('name')
+
+//Logging onboarding if name is null (Assumed to be visiting the extension for the first time)
 if (NAME === null) {
     console.log('onboarding')
 }
+//Else updating the name in the extension
 else {
     document.getElementById('name').innerHTML = NAME
 }
