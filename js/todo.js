@@ -8,6 +8,13 @@ const saveButton = document.getElementById('save');
 const cancelButton = document.getElementById('cancel');
 const listsContainer = document.getElementById('lists-container');
 
+//Mapping ENTER key to SAVE button
+document.getElementById('todo-input').addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        saveButton.click()
+    }
+})
+
 //Update state to show or hide the "empty" message  based on list items
 function updateState() {
 
@@ -31,6 +38,7 @@ function updateState() {
 addButton.addEventListener('click', () => {
     prompt.style.display = "flex";
     document.getElementById('cover').style.display = 'flex';
+    document.getElementById('todo-input').focus()
 });
 
 //Handling SAVE button

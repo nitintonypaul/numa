@@ -57,6 +57,12 @@
     <!--Settings Container-->
     <div class="settings-container" id="settings-container">
 
+        <!-- Save/Cancel Buttons -->
+        <div class="settings-actions">
+            <button class="settings-status-button" id="save-settings">Save</button>
+            <button class="settings-status-button" id="cancel-settings">Cancel</button>
+        </div>
+
         <!-- Appearance Section -->
         <section class="appearance" id="appearance">
             <h3 class="settings-heading" id="appearance-heading">Appearance</h3>
@@ -77,11 +83,21 @@
                     <input type="checkbox" id="hide-clock-toggle">
                 </div>
 
-                <div class="setting" id="change-name">
-                    <label class="setting-name" for="change-user-name">Change Display Name</label>
-                    <input type="text" id="change-name-input">
+                <div class="setting" id="toggle-todo">
+                    <label class="setting-name" for="toggle-todo-toggle">Hide To-Do List</label>
+                    <input type="checkbox" id="toggle-todo-toggle">
                 </div>
     
+                <div class="setting" id="focus-mode">
+                    <label class="setting-name" for="focus-mode-toggle">Hide Quote</label>
+                    <input type="checkbox" id="focus-mode-toggle">
+                </div>
+
+                <div class="setting" id="greetings-toggle">
+                    <label class="setting-name" for="greetings-toggle-toggle">Hide Greeting Message</label>
+                    <input type="checkbox" id="greetings-toggle-toggle">
+                </div>
+
             </div>
         </section>
     
@@ -90,24 +106,16 @@
             <h3 class="settings-heading" id="behavioral-heading">Behavior</h3>
             <div class="behavioral-contents" id="behavioral-contents">
     
-                <div class="setting" id="toggle-todo">
-                    <label class="setting-name" for="toggle-todo-toggle">Hide To-Do List</label>
-                    <input type="checkbox" id="toggle-todo-toggle">
+
+
+                <div class="setting" id="change-name">
+                    <label class="setting-name" for="change-name-input">Change Display Name</label>
+                    <input type="text" id="change-name-input">
                 </div>
     
                 <div class="setting" id="quote-switch">
                     <label class="setting-name" for="quote-switch-toggle">Fun Facts (Instead of Quotes)</label>
                     <input type="checkbox" id="quote-switch-toggle">
-                </div>
-    
-                <div class="setting" id="greetings-toggle">
-                    <label class="setting-name" for="greetings-toggle-toggle">Hide Greeting Message</label>
-                    <input type="checkbox" id="greetings-toggle-toggle">
-                </div>
-    
-                <div class="setting" id="focus-mode">
-                    <label class="setting-name" for="focus-mode-toggle">Hide Quote</label>
-                    <input type="checkbox" id="focus-mode-toggle">
                 </div>
     
             </div>
@@ -126,12 +134,6 @@
             </div>
         </section>
 
-        <!-- Save/Cancel Buttons -->
-        <div class="settings-actions">
-            <button class="settings-status-button" id="save-settings">Save</button>
-            <button class="settings-status-button" id="cancel-settings">Cancel</button>
-        </div>
-    
     </div>
     
 

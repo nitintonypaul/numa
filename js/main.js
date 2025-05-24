@@ -349,6 +349,7 @@ function addLink() {
     //Displaying prompt
     linkPrompt.style.display = 'flex'
     document.getElementById('cover').style.display = 'flex'
+    document.getElementById('url-input').focus()
 }
 
 //Event listener for ADD link
@@ -369,6 +370,13 @@ function onboarding() {
     input.addEventListener('input', () => {
         continueBtn.disabled = !input.value.trim()
     });
+
+    //Mapping ENTER key to continue button
+    input.addEventListener('keydown', function(event) {
+        if (event.key === "Enter") {
+            continueBtn.click()
+        }
+    })
 
     //Continue case when the user has inputted their name
     continueBtn.addEventListener('click', () => {
@@ -450,5 +458,17 @@ window.addEventListener('DOMContentLoaded', () => {
     //Displaying welcome message in the console
     else {
         console.log("Welcome back.")
+    }
+})
+
+//Mapping ENTER key to LINK SAVE button
+document.getElementById('url-input').addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        linkSave.click()
+    }
+})
+document.getElementById('title-input').addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        linkSave.click()
     }
 })
