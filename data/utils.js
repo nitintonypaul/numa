@@ -142,6 +142,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 case 'focus-mode-toggle':
                     quoteContainer.style.display = value ? 'none' : 'flex';
                     break;
+                //Toggle 24 hour clock
+                case 'hour-clock-toggle':
+                    window.hourCheck = Boolean(value);
+                    break;
             }
         });
     }
@@ -206,7 +210,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ['toggle-todo-toggle', document.getElementById('toggle-todo-toggle').checked],
             ['quote-switch-toggle', document.getElementById('quote-switch-toggle').checked],
             ['greetings-toggle-toggle', document.getElementById('greetings-toggle-toggle').checked],
-            ['focus-mode-toggle', document.getElementById('focus-mode-toggle').checked]
+            ['focus-mode-toggle', document.getElementById('focus-mode-toggle').checked],
+            ['hour-clock-toggle', document.getElementById('hour-clock-toggle').checked]
         ];
 
         //Conversion to settings object and storing in localStorage

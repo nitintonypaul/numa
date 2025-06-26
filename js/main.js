@@ -48,10 +48,11 @@ function update() {
         greeting.innerHTML = "Good Evening,"
     }
     
-    //Conversion to 12 hour
-    //NOT NECESSARY IF 24 HOUR MODE IS ON - UPCOMING
-    hours = hours % 12
-    hours = hours ? hours : 12
+    //Conversion to 12 hour if hourCheck is false
+    if (!window.hourCheck) {
+        hours = hours % 12
+        hours = hours ? hours : 12
+    }
 
     //Updating in the website
     clock.innerHTML = `${hours}:${minutes}`
@@ -151,13 +152,13 @@ linkBtn3.addEventListener('click', updateLink)
 linkBtn4.addEventListener('click', updateLink)
 
 
-//Handling SAVE buttone
+//Handling SAVE button
 const linkSave = document.getElementById('link-save')
 
 linkSave.addEventListener('click', () => {
 
     //Constants
-    const URLV = document.getElementById('url-input').value
+    let URLV = document.getElementById('url-input').value
     const TITLE = document.getElementById('title-input').value
 
     //If the save button is clicked from ADD link button and not the EDIT button
@@ -187,21 +188,30 @@ linkSave.addEventListener('click', () => {
         //We obtain the first div possible from the array
         ID = available[0]
 
-        //Declaring domain
-        let domain = ""
-
-        //try and catch done to ensure correct URL input
+        //Trying to make invalid URLs valid
+        let domain;
         try {
-           domain = new URL(URLV).hostname
-        }
-        catch (error) {
-           alert("No 'https://', no entry. Toss it in and try again.");
-           ID = null
-           return true
+            //Checking if the URL is valid
+            domain = new URL(URLV).hostname;
+        } catch (error) {
+            try {
+                //Appending https:// at the start of the URL to mitigate
+                if (!URLV.startsWith("http://") && !URLV.startsWith("https://")) {
+                    URLV = "https://" + URLV;
+                }
+
+                //Rechecking
+                domain = new URL(URLV).hostname;
+            } catch (anotherError) {
+
+                //If URL is truly invalid
+                console.error("Invalid URL even after fixing:", anotherError);
+                window.alert("Invalid URL. Please try again.");
+                return true;
+            }
         }
 
         //Changing image, title and href
-        //FUTURE NITIN, PLEASE HAVE A LOOK AT THE FAVICON SYSTEM
         document.getElementById(`link-${ID}`).style.display = 'flex'
         document.getElementById(`link-image-div-${ID}`).innerHTML = `<img class="url-image" src="https://icons.duckduckgo.com/ip3/${domain}.ico">`
         document.getElementById(`link-name-${ID}`).innerHTML = TITLE
@@ -274,16 +284,27 @@ linkSave.addEventListener('click', () => {
         return true
     }
 
-    //Obtaining URL
-    let domain = ""
-
-    //try-catch to ensure correct URL input
+    //Trying to make invalid URLs valid
+    let domain;
     try {
-        domain = new URL(URLV).hostname
-    }
-    catch (error) {
-        alert("No 'https://', no entry. Toss it in and try again.");
-        return true
+        //Checking if the URL is valid
+        domain = new URL(URLV).hostname;
+    } catch (error) {
+        try {
+            //Appending https:// at the start of the URL to mitigate
+            if (!URLV.startsWith("http://") && !URLV.startsWith("https://")) {
+                URLV = "https://" + URLV;
+            }
+
+            //Rechecking
+            domain = new URL(URLV).hostname;
+        } catch (anotherError) {
+
+            //If URL is truly invalid
+            console.error("Invalid URL even after fixing:", anotherError);
+            window.alert("Invalid URL. Please try again.");
+            return true;
+        }
     }
 
     //Changing image, title and href
@@ -417,13 +438,22 @@ function onboarding() {
             const quote = data[0].q
             const author = data[0].a
 
-            //Displaying quote on the website
-            document.getElementById("quote").innerText = `“${quote}”`
-            document.getElementById("author").innerText = `— ${author}`
+            //Checking if the quote is a rate limited message
+            //If it is the rate limited message, the fallback quote is shown
+            if (author.includes("zenquotes")) {
+                document.getElementById("quote").innerText = `“The ones who are crazy enough to think they can change the world are the ones who do.”`
+                document.getElementById("author").innerText = `— Steve Jobs`
+            }
+            else {
+                //Displaying API quote on the website
+                document.getElementById("quote").innerText = `“${quote}”`
+                document.getElementById("author").innerText = `— ${author}`
 
-            //Saving quote to localStorage
-            localStorage.setItem('quote', quote)
-            localStorage.setItem('author',author)
+                //Saving quote to localStorage
+                localStorage.setItem('quote', quote)
+                localStorage.setItem('author',author)
+            }
+
         })
 
         //Displaying Fallback instead of an error

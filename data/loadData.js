@@ -11,7 +11,7 @@ function loadPreference() {
             let quote = data[0].q
             let author = data[0].a
             
-            //Checking if the quote is a API call message and obtaining quote from localStorageif it exists
+            //Checking if the quote is a API call message and obtaining quote from localStorage if it exists
             if (author.includes('zenquotes')) {
                 quote = localStorage.getItem('quote')
                 author = localStorage.getItem('author')
@@ -161,10 +161,14 @@ function loadPreference() {
                         document.getElementById('quote-container').style.display = 'none'
                     }
                     break
+                case 'hour-clock-toggle':
+                    window.hourCheck = Boolean(value);
+                    break;
             }
 
         }
     }
+    
     //Logging "no settings"
     else {
         console.log("You've got no settings.")
