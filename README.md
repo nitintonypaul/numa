@@ -2,14 +2,6 @@
 # <img src="assets/favicon.ico" alt="NUMA Favicon" width="24" style="vertical-align:middle;margin-right:8px;"/> NUMA  
 > _“Reorganize. Refocus. Reload.”_  
 
-![Under Development](https://img.shields.io/badge/status-in%20development-yellow)
-
----
-
-## ⚠️ Disclaimer
-
-NUMA is currently in early access and is still under active development. While the extension is functional, some features may be incomplete or subject to change. By using NUMA, you acknowledge that the extension may not be fully polished and could contain bugs. Feedback is welcomed to help improve the product as it evolves!
-
 ---
 
 ## 📋 Table of Contents
@@ -20,8 +12,7 @@ NUMA is currently in early access and is still under active development. While t
 4. [Usage](#usage)
 5. [Tech Stack](#tech-stack)
 6. [Design](#design)  
-7. [Next Steps](#next-steps)  
-8. [License](#license)
+7. [License](#license)
 
 ---
 
@@ -117,15 +108,6 @@ Have more questions? Visit [FAQ](https://github.com/nitintonypaul/numa/blob/main
 <div align="center">
   <img src="assets/NUMA-preview.png" alt="NUMA preview" />
 </div><br>
-
----
-
-## 📈 Next Steps
-
-- Official Chrome Web Store release
-- Add more customization features for users
-- Refine usage experience
-- Extend support for other browsers
 
 ---
 
