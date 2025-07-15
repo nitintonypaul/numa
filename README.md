@@ -66,10 +66,6 @@ Or, if you prefer acronyms: **Neutral Utility for Maintaining Attention.**
 ### 🛒 From Gumroad
 NUMA is also available on [Gumroad](https://nitintonypaul.gumroad.com/l/numa) as a free or donation-supported download. If you’d like to support development, you can choose to pay what you want — or download it for free.
 
-### 🛒 From Chrome Web Store (Coming Soon)
-
-Stay tuned! The official Web Store release is on the roadmap.
-
 ---
 
 ## 🚀 Usage (How to Get Started)
